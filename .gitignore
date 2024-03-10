@@ -1,0 +1,18 @@
+# Ignora todos los archivos .zip
+*.zip
+
+# Ignora todos los archivos .rar
+*.rar
+
+# Ignora todos los archivos .tar
+*.tar
+
+# Ignora todos los archivos .gz
+*.gz
+
+# Ignora todos los archivos .bz2
+*.bz2
+
+# Ignora todos los archivos .7z
+*.7z
+
