@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+      <meta charset="UTF-8"> 
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	  <link href="styles.css" rel="stylesheet" type="text/css">
+    <title>Formulario de Reserva de Hotel</title>
+</head>
+<body>
+    <form id="reservaForm">
+    <h1>Formulario de Reserva</h1>
+		<div class="personales">
+			<label for="nombre">Nombre:</label>
+			<input type="text" id="nombre" name="nombre" required>
+
+			<label for="apellidos">Apellidos:</label>
+			<input type="text" id="apellidos" name="apellidos" required>
+
+			<label for="telefono">Teléfono de contacto:</label>
+			<input type="tel" id="telefono" name="telefono" pattern="[0-9]{9}" required>
+
+			<label for="email">E-mail:</label>
+			<input type="email" id="email" name="email" required>
+		</div><br><br>
+		<div class="dias">
+
+
+			<h3>Fecha de entrada:</h3>
+			<label for="mesEntrada">Mes:</label><br>
+			<select id="mesEntrada" name="mesEntrada" required>
+				<option value="Enero">Enero</option>
+				<option value="Febrero">Febrero</option>
+				<option value="Marzo">Marzo</option>
+				<option value="Abril">Abril</option>
+				<option value="Mayo">Mayo</option>
+				<option value="Junio">Junio</option>
+				<option value="Julio">Julio</option>
+				<option value="Agosto">Agosto</option>
+				<option value="Septiembre">Septiembre</option>
+				<option value="Octubre">Octubre</option>
+				<option value="Noviembre">Noviembre</option>
+				<option value="Diciembre">Diciembre</option>
+			</select></br>
+
+			<label for="diaEntrada">Día:</label><br>
+			<select id="diaEntrada" name="diaEntrada" required>
+				<option value="1">1</option>
+				<option value="2">2</option>
+				<option value="3">3</option>
+				<option value="4">4</option>
+				<option value="5">5</option>
+				<option value="6">6</option>
+				<option value="7">7</option>
+				<option value="8">8</option>
+				<option value="9">9</option>
+				<option value="10">10</option>
+				<option value="11">11</option>
+				<option value="12">12</option>
+				<option value="13">13</option>
+				<option value="14">14</option>
+				<option value="15">15</option>
+				<option value="16">16</option>
+				<option value="17">17</option>
+				<option value="18">18</option>
+				<option value="19">19</option>
+				<option value="20">20</option>
+				<option value="21">21</option>
+				<option value="22">22</option>
+				<option value="23">23</option>
+				<option value="24">24</option>
+				<option value="25">25</option>
+				<option value="26">26</option>
+				<option value="27">27</option>
+				<option value="28">28</option>
+				<option value="29">29</option>
+				<option value="20">30</option>
+				<option value="31">31</option>
+			</select>
+			</select><br><br>
+
+			<h3>Fecha de salida:</h3>
+			<label for="mesSalida">Mes:</label><br>
+			<select id="mesSalida" name="mesSalida" required>
+				<option value="Enero">Enero</option>
+				<option value="Febrero">Febrero</option>
+				<option value="Marzo">Marzo</option>
+				<option value="Abril">Abril</option>
+				<option value="Mayo">Mayo</option>
+				<option value="Junio">Junio</option>
+				<option value="Julio">Julio</option>
+				<option value="Agosto">Agosto</option>
+				<option value="Septiembre">Septiembre</option>
+				<option value="Octubre">Octubre</option>
+				<option value="Noviembre">Noviembre</option>
+				<option value="Diciembre">Diciembre</option>
+			</select></br>
+
+			<label for="diaSalida">Día:</label><br>
+			<select id="diaSalida" name="diaSalida" required>
+				<option value="1">1</option>
+				<option value="2">2</option>
+				<option value="3">3</option>
+				<option value="4">4</option>
+				<option value="5">5</option>
+				<option value="6">6</option>
+				<option value="7">7</option>
+				<option value="8">8</option>
+				<option value="9">9</option>
+				<option value="10">10</option>
+				<option value="11">11</option>
+				<option value="12">12</option>
+				<option value="13">13</option>
+				<option value="14">14</option>
+				<option value="15">15</option>
+				<option value="16">16</option>
+				<option value="17">17</option>
+				<option value="18">18</option>
+				<option value="19">19</option>
+				<option value="20">20</option>
+				<option value="21">21</option>
+				<option value="22">22</option>
+				<option value="23">23</option>
+				<option value="24">24</option>
+				<option value="25">25</option>
+				<option value="26">26</option>
+				<option value="27">27</option>
+				<option value="28">28</option>
+				<option value="29">29</option>
+				<option value="20">30</option>
+				<option value="31">31</option>
+			</select>
+			<br><br>
+
+			<label>Tipo de habitación:</label><br>
+			<input type="radio" id="simple" name="habitacion" value="simple" required>
+			<label for="simple">Simple</label><br>
+			<input type="radio" id="doble" name="habitacion" value="doble">
+			<label for="doble">Doble</label><br>
+			<input type="radio" id="matrimonio" name="habitacion" value="matrimonio">
+			<label for="matrimonio">Matrimonio</label><br><br>
+			<label for="noches">Número de noches:</label>
+			<input type="number" id="noches" name="noches" min="1" required><br><br>
+		</div>
+		<div class="preferencias">
+        <label>Preferencias:</label><br>
+			<input type="checkbox" id="desayuno" name="servicios[]" value="desayuno">
+			<label for="desayuno">Desayuno</label><br>
+			<input type="checkbox" id="comida" name="servicios[]" value="comida">
+			<label for="comida">Comida</label><br>
+			<input type="checkbox" id="cena" name="servicios[]" value="cena">
+			<label for="cena">Cena</label><br>
+			<input type="checkbox" id="camaSupletoria" name="servicios[]" value="camaSupletoria">
+			<label for="camaSupletoria">Cama Supletoria</label><br><br>
+
+			<label for="comentarios">Comentarios:</label><br>
+			<textarea id="comentarios" name="comentarios" rows="4" cols="50"></textarea><br><br>
+		</div><br><br>
+
+			<button type="button" onclick="limpiarFormulario()">Limpiar</button>
+			<button type="submit">Enviar</button>
+    </form>
+
+    <script>
+        function limpiarFormulario() {
+            document.getElementById("reservaForm").reset();
+        }
+    </script>
+</body>
+</html>

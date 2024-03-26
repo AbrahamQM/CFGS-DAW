@@ -1,0 +1,38 @@
+form {
+	background-color: lightblue;
+	padding: 30px;
+	border: 2px solid black;
+	margin: 30px;
+}
+
+.personales{
+	background-color: rgb(160, 200, 230);
+	padding: 20px;
+	border: 2px solid black;
+}
+
+.personales label, .personales input {
+	display: inline;
+	vertical-align: top; /* Alineación vertical superior */
+}
+
+.personales label {
+	width: 100px; /* Ancho de las etiquetas */
+}
+
+.personales input {
+	width: 200px; /* Ancho de los campos de entrada */
+}
+
+.dias{
+	background-color: rgb(160, 200, 230);
+	padding: 20px;
+	border: 2px solid black;
+}
+
+.preferencias{
+	margin-top: 30px;
+	background-color: blue;
+	padding: 20px;
+	border: 2px solid black;	
+}

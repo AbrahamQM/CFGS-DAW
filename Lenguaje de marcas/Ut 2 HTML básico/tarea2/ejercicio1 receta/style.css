@@ -1,0 +1,27 @@
+body {
+	font-family: Arial, sans-serif;
+	margin: 10px;
+	padding: 0;
+	background-color: orange; /*naranja del fondo*/
+}
+h2{
+	margin: 15px;
+}
+
+#ingredientes{
+	background-color: green;
+	display: flex;
+}
+
+.columna{
+	flex:1;
+}
+
+.columna img{	
+	margin: 60px;
+}
+
+#proceso{
+	background-color: violet;
+	display: flex;
+}
