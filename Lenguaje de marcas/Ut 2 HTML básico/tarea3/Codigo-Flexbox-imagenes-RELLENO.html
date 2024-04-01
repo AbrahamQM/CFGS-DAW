@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <title>Ejercicio 2: Práctica de Flex</title>
+<meta charset="utf-8">
+<style>
+* {
+    box-sizing: border-box;
+}
+
+/* Estilo del body */
+body {
+    margin: 0;
+    font-family: Arial;
+}
+
+/* Header, título de la página. No confundir con la etiqueta head. */
+.header {
+    text-align: center;
+    padding: 32px;
+}
+/* Contenedor de la fila */
+/**** Aquí debes de introducir las características flex-container ****/
+.row {
+	display: flex;/* Establece el contenedor como flexbox */
+	flex-wrap: wrap; /* Permite que las columnas se envuelvan a la siguiente fila */
+	margin: 3%; /* Añado un margen para separar el contenido de los bordes */
+}
+/* Crea 4 columnas para que estén siempre una al lado de la otra.*/
+/* Columnas del 25% del tamaño del flex-container cada una  */
+/**** Aquí debes de introducir las características flex-item ****/
+/**** Tener en cuenta los elementos de margin y vertical-align ****/
+.column {
+	flex: 1; /* Hace que todas las columnas tengan el mismo tamaño */
+	padding: 0 2px; /* Añade un espacio entre las columnas */
+}
+
+.column img {
+    margin-top: 8px; /* Añade un espacio entre las imágenes */
+	vertical-align: top; /* Alinea las imágenes en la parte superior */
+}
+
+/* Responsive layout - Cuando se reduce a 800px, cambia divide el ancho a la mitad*/
+@media (max-width: 800px) {
+    .column {
+		flex: 50%; /* Divide el ancho a la mitad */
+    }
+}
+
+/* Responsive layout - cuando se reduce a 600px, hace que ocupe todo el tamaño del container */
+@media (max-width: 600px) {
+  .column {
+    flex: 100%; /* Ocupa todo el ancho del contenedor */
+  }
+}
+</style>
+</head>
+<body>
+
+<!-- Header -->
+<div class="header">
+  <h1>Tabla de imágenes</h1>
+  <p>Cambia el tamaño de tu navegador para que veas el efecto.</p>
+</div>
+
+<!-- Tabla de imágenes -->
+<div class="row">
+  <div class="column">
+    <img src="imagenes/wedding.jpg" alt="No hay imagen" style="width:100%">
+    <img src="imagenes/rocks.jpg" alt="No hay imagen" style="width:100%">
+    <img src="imagenes/falls2.jpg" alt="No hay imagen" style="width:100%">
+    <img src="imagenes/paris.jpg" alt="No hay imagen" style="width:100%">
+    <img src="imagenes/nature.jpg" alt="No hay imagen" style="width:100%">
+    <img src="imagenes/mist.jpg" alt="No hay imagen" style="width:100%">
+    <img src="imagenes/paris.jpg" alt="No hay imagen" style="width:100%">
+  </div>
+  <div class="column">
+    <img src="imagenes/underwater.jpg" alt="No hay imagen" style="width:100%">
+    <img src="imagenes/ocean.jpg" alt="No hay imagen" style="width:100%">
+    <img src="imagenes/wedding.jpg" alt="No hay imagen" style="width:100%">
+    <img src="imagenes/mountainskies.jpg" alt="No hay imagen" style="width:100%">
+    <img src="imagenes/rocks.jpg" alt="No hay imagen" style="width:100%">
+    <img src="imagenes/underwater.jpg" alt="No hay imagen" style="width:100%">
+  </div>
+  <div class="column">
+    <img src="imagenes/wedding.jpg" alt="No hay imagen" style="width:100%">
+    <img src="imagenes/rocks.jpg" alt="No hay imagen" style="width:100%">
+    <img src="imagenes/falls2.jpg" alt="No hay imagen" style="width:100%">
+    <img src="imagenes/paris.jpg" alt="No hay imagen" style="width:100%">
+    <img src="imagenes/nature.jpg" alt="No hay imagen" style="width:100%">
+    <img src="imagenes/mist.jpg" alt="No hay imagen" style="width:100%">
+    <img src="imagenes/paris.jpg" alt="No hay imagen" style="width:100%">
+  </div>
+  <div class="column">
+    <img src="imagenes/underwater.jpg" alt="No hay imagen" style="width:100%">
+    <img src="imagenes/ocean.jpg" alt="No hay imagen" style="width:100%">
+    <img src="imagenes/wedding.jpg" alt="No hay imagen" style="width:100%">
+    <img src="imagenes/mountainskies.jpg" alt="No hay imagen" style="width:100%">
+    <img src="imagenes/rocks.jpg" alt="No hay imagen" style="width:100%">
+    <img src="imagenes/underwater.jpg" alt="No hay imagen" style="width:100%">
+  </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,84 @@
+header, nav, section, article, footer, h1, h2, p{
+    margin: 10px 0;
+}
+
+body{
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+header {
+    background-color: #66ad6b;
+    text-align: center;
+}
+
+nav {
+    background-color: #e1f305;
+    float: left;
+    width: 200px;
+}
+
+nav select {
+    display: none;
+}
+
+nav ul {
+    padding-left: 10px;
+    list-style-type: none;
+}
+
+section {
+    margin-left: 220px;
+}
+
+article {
+    background-color: #aed0da;
+    color: white;
+    float: left;
+    width: 300px;
+    margin-left: 0;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    padding: 10px;
+}
+
+footer {
+    background-color: #66ad6b;
+    clear: both;
+}
+
+header, nav, section, article, footer {
+    border-radius: 10px;
+}
+
+/* Indica a partir de aquí, las opciones necesarias para que se cumpla lo que se pide*/
+
+@media screen and (max-width: 600px) {
+	section {
+		margin-top: -10% /*ajusto para que ocupe el espacio del título "Primera sección"*/
+	}
+		
+	section h2 {
+		visibility: hidden; /*Oculto el título "Primera sección"*/
+	}
+}
+
+@media screen and (max-width: 480px) {
+	nav{
+		float: none; /*elimino el foat*/
+		width: 100%; /*hago que el menú ocupe el ancho total*/
+		padding: 3px; /* separo el desplegable de los bordes del contenedor */
+	}
+	
+	section{
+		margin-left: 0px; /*elimino el margen izquierdo de los artículos dentro del contenedor*/
+	}
+	
+	nav select {
+		display: block; /* hago que aparezca el desplegable con las opciones*/
+	}
+	
+	nav ul {
+		display: none; /*Oculto los links que estaban en un principio. */
+	}
+}
