@@ -1,11 +1,11 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
-<impresoras xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:SchemaLocation="file:./quintana_mico_abraham_impresoras.xsd">
-  <impresora numSerie="i245" tipo="láser" compra="2010">
+ï»¿<?xml version="1.0" encoding="UTF-8"?>
+<impresoras xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="quintana_mico_abraham_impresoras.xsd">
+  <impresora numSerie="i245" tipo="lÃ¡ser" compra="2010">
     <marca>Epson</marca>
       <modelo>EPL300</modelo>
       <peso>4.52</peso>
-      <tamaño>A4</tamaño>
-      <tamaño>A5</tamaño>
+      <tamaÃ±o>A4</tamaÃ±o>
+      <tamaÃ±o>A5</tamaÃ±o>
       <cartucho>C-123BV</cartucho>
       <enred/>
   </impresora>
@@ -13,7 +13,7 @@
     <marca>HP</marca>
     <modelo>LaserJet 2410</modelo>
     <peso>3.2</peso>
-    <tamaño>A4</tamaño>
+    <tamaÃ±o>A4</tamaÃ±o>
     <cartucho>C-456P</cartucho>
   </impresora>
 </impresoras>
