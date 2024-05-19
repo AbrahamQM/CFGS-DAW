@@ -1,0 +1,16 @@
+<!ELEMENT torneo (participante+)>
+<!ELEMENT participante (nombre, edad, pais, cabezaDeSerie?)>
+<!ELEMENT nombre (#PCDATA)>
+<!ELEMENT edad (#PCDATA)>
+<!ELEMENT pais (#PCDATA)>
+<!ELEMENT cabezaDeSerie EMPTY>
+<!ATTLIST torneo 
+	edicion CDATA #REQUIRED
+	anteriorGanador IDREF #REQUIRED> 
+<!ATTLIST participante
+	idP ID #REQUIRED 
+	pareja IDREF #REQUIRED>
+<!-- OJO, SI PONEMOS COMENTARIOS EN MEDIO DEL DTD DA ERROR, MEJOR AL FINAL -->
+<!-- anteriorGanador apunta al id de uno de los participantes -->
+<!-- idP no es IDREF porque es su id y no un puntero a otro elemento -->
+<!-- pareja si es IDREF porque apunta al id de otro elemento que es su pareja-->
