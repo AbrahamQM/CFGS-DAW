@@ -1,0 +1,135 @@
+<diagram program="umletino" version="15.1"><zoom_level>10</zoom_level><element><id>UMLClass</id><coordinates><x>413</x><y>170</y><w>390</w><h>400</h></coordinates><panel_attributes>Cliente
+--
+    - DNI: String
+    - Nombre: String
+    - Dirección: String
+    - Teléfono: Int
+    - Aval: String
+    - Reservas (Listado de elementos de la clase Reserva): List&lt;Int&gt;
+
+--
+Constructor 
+Cliente(String dni, String nombre, String direccion, 
+int telefono, String aval, List&lt;Integer&gt; reservas)
+--
+getDni()
+setDni(String dni)
+getNombre()
+setNombre(String nombre)
+getDireccion()
+setDireccion(String direccion)
+getTelefono()
+setTelefono(int telefono)
+getAval()
+setAval(String aval)
+getReservas()
+setReservas(List&lt;Integer&gt; reservas)
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>1053</x><y>180</y><w>440</w><h>400</h></coordinates><panel_attributes>Reserva
+--
+    - Id_Reserva: Int
+    - Cliente: String 
+    - Fecha_Inicio: Date
+    - Fecha_Fin: Date
+    - Precio_Total: Int
+    - Coches (Listado de coches) List&lt;String&gt;
+    - Entregados: Boolean
+--
+Constructor 
+Reserva(int idReserva, String cliente, Date fechaInicio, 
+Date fechaFin, int precioTotal, List&lt;String&gt; coches, boolean entregados)
+--
+getIdReserva()
+setIdReserva(int idReserva)
+getCliente()
+setCliente(String cliente)
+getFechaInicio()
+setFechaInicio(Date fechaInicio)
+getFechaFin()
+setFechaFin(Date fechaFin)
+getPrecioTotal()
+setPrecioTotal(int precioTotal)
+getCoches()
+setCoches(List&lt;String&gt; coches)
+isEntregados()
+setEntregados(boolean entregados)
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>793</x><y>200</y><w>280</w><h>100</h></coordinates><panel_attributes>lt=-
+1..*
+
+
+</panel_attributes><additional_attributes>10;80;260;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>1813</x><y>200</y><w>360</w><h>310</h></coordinates><panel_attributes>Reserva_Coche
+--
+   - Reserva: Int
+   - Coche: String
+   - Precio: Double
+   - CombustibleInicial: Int
+   - Entregado: Boolean
+--
+Constructor 
+Reserva_Coche(int reserva, String coche, double precio,
+ int combustibleInicial, boolean entregado)
+--
+getReserva()
+setReserva(int reserva)
+getCoche()
+setCoche(String coche)
+getPrecio()
+setPrecio(double precio)
+getCombustibleInicial()
+setCombustibleInicial(int combustibleInicial)
+isEntregado()
+setEntregado(boolean entregado)
+
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>1673</x><y>720</y><w>360</w><h>320</h></coordinates><panel_attributes>Coche
+--
+    - Matrícula: String
+    - Modelo: String
+    - Color: String
+    - Marca: String
+    - Garaje: Int
+--
+Constructor 
+Reserva_Coche(int reserva, String coche, 
+double precio, int combustibleInicial, boolean entregado)
+--
+getReserva()
+setReserva(int reserva)
+getCoche()
+setCoche(String coche)
+getPrecio()
+setPrecio(double precio)
+getCombustibleInicial()
+setCombustibleInicial(int combustibleInicial)
+isEntregado()
+setEntregado(boolean entregado)
+
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>1083</x><y>840</y><w>310</w><h>220</h></coordinates><panel_attributes>Garaje
+--
+    - Código: Int
+    - Ubicación: String
+    - Capacidad: Int
+--
+Constructor 
+Garaje(int codigo, String ubicacion, int capacidad)
+--
+getCodigo()
+setCodigo(int codigo)
+getUbicacion()
+setUbicacion(String ubicacion)
+getCapacidad()
+setCapacidad(int capacidad)
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>1383</x><y>810</y><w>300</w><h>100</h></coordinates><panel_attributes>lt=-
+1..1
+
+</panel_attributes><additional_attributes>10;80;280;10</additional_attributes></element><element><id>Relation</id><coordinates><x>1663</x><y>240</y><w>170</w><h>530</h></coordinates><panel_attributes>lt=-
+1..1
+
+</panel_attributes><additional_attributes>10;510;150;10</additional_attributes></element><element><id>Relation</id><coordinates><x>1483</x><y>280</y><w>210</w><h>490</h></coordinates><panel_attributes>lt=-
+1..*
+
+</panel_attributes><additional_attributes>190;470;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>1483</x><y>200</y><w>350</w><h>80</h></coordinates><panel_attributes>lt=-
+m1=1
+m2=*
+cada reserva tiene 1..* Reserva_coche &gt;
+
+
+</panel_attributes><additional_attributes>10;10;330;30</additional_attributes></element></diagram>
