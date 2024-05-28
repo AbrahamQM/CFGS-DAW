@@ -1,0 +1,110 @@
+<diagram program="umletino" version="15.1"><zoom_level>9</zoom_level><element><id>UMLClass</id><coordinates><x>747</x><y>468</y><w>378</w><h>612</h></coordinates><panel_attributes>Sensor
+--
+    - IdSensor: int
+    - Fabricante: String
+    - Modelo: String
+    - SecuenciaIncio: String 
+    - FactorEscala: double
+    - UnidadMedida: String
+    - IntervaloMuestreo: int
+    - Ubicacion: String
+    - Estado: String
+    - ValorActual: int
+    - UmbralAlarma: int
+    - ToleranciaIntervalo: int
+--
+Constructor
+Sensor(int idSensor, String fabricante, String modelo, 
+String secuenciaInicio, double factorEscala, 
+UnidadMedidaEnum unidadMedida, int intervaloMuestreo, 
+String ubicacion, EstadoEnum estado, int valorActual, 
+int umbralAlarma, Integer toleranciaIntervalo)
+--
+getIdSensor()
+setIdSensor(int idSensor)
+getFabricante()
+setFabricante(String fabricante)
+getModelo()
+setModelo(String modelo)
+getSecuenciaInicio()
+setSecuenciaInicio(String secuenciaInicio)
+getFactorEscala()
+setFactorEscala(double factorEscala)
+getUnidadMedida()
+setUnidadMedida(UnidadMedidaEnum unidadMedida)
+getIntervaloMuestreo()
+setIntervaloMuestreo(int intervaloMuestreo)
+getUbicacion()
+setUbicacion(String ubicacion)
+getEstado()
+setEstado(EstadoEnum estado)
+getValorActual()
+setValorActual(int valorActual)
+getUmbralAlarma()
+setUmbralAlarma(int umbralAlarma)
+getToleranciaIntervalo()
+setToleranciaIntervalo(Optional&lt;Integer&gt; toleranciaIntervalo)</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>252</x><y>846</y><w>378</w><h>153</h></coordinates><panel_attributes>Edificio
+--
+    - Direccion: String
+    - NumeroEmergencia: int
+--
+Constructor
+Edificio(String direccion, int numeroEmergencia)
+--
+getDireccion()
+setDireccion(String direccion)
+getNumeroEmergencia()
+setNumeroEmergencia(int numeroEmergencia)
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>234</x><y>549</y><w>378</w><h>225</h></coordinates><panel_attributes>Alarma
+--
+    - IdAlarma:int
+    - Sensor: int
+    - Estado: boolean
+    - Duracion: int
+--
+Constructor
+Alarma(int idAlarma, int sensor, boolean estado, int duracion)
+--
+getIdAlarma()
+setIdAlarma(int idAlarma)
+getSensor()
+setSensor(int sensor)
+isEstado()
+setEstado(boolean estado)
+getDuracion()
+setDuracion(int duracion)
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>360</x><y>216</y><w>378</w><h>225</h></coordinates><panel_attributes>HistoricoAlarma
+--
+    - Alarma: int
+    - FechaYHora: LocalDateTime
+    - Gravedad: int
+    - TiempoReparacion: int
+    - Estado: boolean
+--
+Constructor
+HistoricoAlarma(int alarma, LocalDateTime fechaYHora, 
+int gravedad, int tiempoReparacion, boolean estado)
+--
+getAlarma()
+setAlarma(int alarma)
+getFechaYHora()
+setFechaYHora(LocalDateTime fechaYHora)
+getGravedad()
+setGravedad(int gravedad)
+getTiempoReparacion()
+setTiempoReparacion(int tiempoReparacion)
+isEstado()
+setEstado(boolean estado)
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>603</x><y>495</y><w>162</w><h>99</h></coordinates><panel_attributes>lt=-
+m1=*
+m2=1
+*..1
+</panel_attributes><additional_attributes>10;90;160;10</additional_attributes></element><element><id>Relation</id><coordinates><x>153</x><y>234</y><w>225</w><h>369</h></coordinates><panel_attributes>lt=-
+1..*
+m1=1
+m2=*
+</panel_attributes><additional_attributes>90;380;10;380;10;10;230;10</additional_attributes></element><element><id>Relation</id><coordinates><x>621</x><y>585</y><w>135</w><h>306</h></coordinates><panel_attributes>lt=-
+m1=1
+m2=*
+1..*
+</panel_attributes><additional_attributes>10;320;130;10</additional_attributes></element></diagram>
