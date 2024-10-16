@@ -1,0 +1,45 @@
+Realizar una aplicación en JavaScript que realice lo siguiente:
+
+Crea un programa que pida por parámetro la fecha de tu cumpleaños, con este valor calcula
+El día de la semana en la que nacistes.
+Si por ejemplo ese día en que nacistes es "Jueves" calcula en qué años tu cumpleaños vuelve a caer "Jueves" hasta el 2100.
+NOTA: Recuerda que los meses empiezan en el valor 0 al 11.
+
+Crea un programa que muestre la fecha actual en diferentes formatos. Ejemplo en el día de hoy sería:
+21/10/2021
+Jueves, 21 de Octubre de 2021
+Thursday, October 21th, 2021
+
+Crea un programa que muestre la hora actual en diferentes formatos:
+21:05:36 (hora detallada con minutos y segundos)
+21:05 PM o 09:25 AM (AM antes del mediodía, PM después del medio día)
+
+Crea un programa que pida al usuario que elija una opción del siguiente menú:
+Potencia
+Raíz
+Redondeo
+
+Si el usuario introduce 1, se le deberá pedir una base y un exponente y se mostrará el resultado en pantalla "La potencia de X elevado a Y es: "
+Si el usuario introduce 2, se le pedirá un número(no negativo) y se mostrará el resultado en pantalla "La raíz de X es: "
+Si el usuario introduce 3, se le pedirá un decimal y se mostrará por pantalla el redondeo con un número entero "El redondeo del número X es: "
+
+Crea un programa que pida al usuario su nombre y apellidos y muestre:.
+Una propuesta de nombre de usuario con la 1º inicial del nombre + 3 iniciales del primer apellido + 3 iniciales del segundo apellido ej: yguaper
+Una propuesta de nombre de usuario con las 3 primeras letras del nombre + 3 primeras del primer apellido + 3 primeras del segundo apellido ej: yaiguaper
+
+Crea un programa que pida al usuario una propuesta de contraseña y compruebe si cumple con los siguientes requisitos:
+Tiene entre 8 y 16 caracteres
+Tiene una letra mayúscula
+Tiene una letra minúscula
+Tiene un número
+Tiene uno de los siguientes valores: - (guión alto), _ (guión bajo), @ (arroba), # (almohadilla), $ (dólar), % (tanto por ciento), & (ampersand)
+
+Si cumple con todos los requisitos se considera una contraseña segura, de lo contrario mostrará que es una contraseña no segura.
+
+
+Crea un programa que tenga los siguientes botones para permitir modificar las siguientes propiedades de una ventana:
+Mover+10: moverá la ventana 10px a la derecha y abajo cada vez que se pulse en dicho botón.
+MoverPos: moverá la ventana a la posición 100,100.
+Width: aumentará el ancho de la ventana en 10px cada vez que se pulse
+Height: aumentará el alto de la ventana en 10px cada vez que se pulse
+Scroll: Colocará un scroll a la ventana
