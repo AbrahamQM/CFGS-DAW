@@ -137,8 +137,8 @@ let tieneMinuscula = false;
 let tieneNumero = false;
 let tieneCaracterEspecial = false;
 
-for (let caracter in contrasena) {
-    
+for (let caracter of contrasena) {
+
     // Comprobar si es una letra mayúscula
     if (caracter >= 'A' && caracter <= 'Z') {
         tieneMayuscula = true;
@@ -165,7 +165,7 @@ if (longitudValida && tieneMayuscula && tieneMinuscula && tieneNumero && tieneCa
 } else {
     alert("Contraseña no segura. Asegúrate de que tenga:\n- Entre 8 y 16 caracteres" + 
         "\n- Al menos una letra mayúscula\n- Al menos una letra minúscula\n- Al menos un número" + 
-        "\n- Al menos uno de los siguientes caracteres: - _ @ # $ % &");
+        "\n- Al menos uno de los siguientes caracteres: - _ @ # $ % &\n " + longitudValida + tieneMayuscula + tieneMinuscula + tieneNumero + tieneCaracterEspecial);
 }
 
 
