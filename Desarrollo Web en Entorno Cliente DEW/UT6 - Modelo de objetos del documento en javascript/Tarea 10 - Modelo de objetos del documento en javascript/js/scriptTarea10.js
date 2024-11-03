@@ -80,7 +80,7 @@ const codigo = () =>{
             contenedor.appendChild(pueblos);
             contenedor.style.visibility = "visible";
             contenedor.appendChild(pueblos);
-            // contenedor.style.position = "absolute"; 
+            contenedor.style.position = "absolute"; 
             contenedor.style.width = "30%";
             contenedor.style.display = "inline-block";
             pueblos.style.visibility = "visible"; 
