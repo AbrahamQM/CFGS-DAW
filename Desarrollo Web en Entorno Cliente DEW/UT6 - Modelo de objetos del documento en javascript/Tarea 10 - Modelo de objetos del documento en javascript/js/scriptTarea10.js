@@ -64,7 +64,10 @@ const codigo = () =>{
     posicionamos al lado del select en lugar de verlos en el lugar que ocuparía dentro del html. A cada uno de 
     esos 3 pueblos debemos añadirle un addEventListener()
     */
-    const contenedor = document.createElement("div");
+    const contenedorImg = document.getElementById("contenedor_imag");
+    //Intento darle el estilo mas parecido posible al del video
+    contenedorImg.style.display = "inline-block";
+    contenedorImg.style.visibility = "visible"; 
     let pueblos;
     let isla;
     const seleccionarIsla = (e) =>{
@@ -72,17 +75,11 @@ const codigo = () =>{
         pueblos = document.getElementById(isla);//obtengo el listado de pueblos que corresponde.
         ocultarListas();//oculto todas las listas de pueblos por si el usuario cambia de isla
         if (isla !== " "){
-            const hijos = labels[2].children;
+            const hijos = contenedorImg.children;
             for (const hijo of hijos) { //por si se cambia de isla elimino los posibles hijos que tenga
-                labels[2].removeChild(hijo);
+                contenedorImg.removeChild(hijo);
             }
-            labels[2].appendChild(contenedor);
-            contenedor.appendChild(pueblos);
-            contenedor.style.visibility = "visible";
-            contenedor.appendChild(pueblos);
-            contenedor.style.position = "absolute"; 
-            contenedor.style.width = "30%";
-            contenedor.style.display = "inline-block";
+            contenedorImg.appendChild(pueblos);
             pueblos.style.visibility = "visible"; 
             for (const p of pueblos.children) { //añado los lístener
                 p.addEventListener("click", elegirPueblo, false);
@@ -121,13 +118,15 @@ const codigo = () =>{
     const mostrarImagen = () => {
         const rutaImagen = `/islas/${isla}.png`; 
         const imagen = document.createElement("img"); //creo la imagen y le seteo los atributos
-        const contenedorImg = document.getElementById("contenedor_imag");
-        contenedorImg.style.display = "inline-block";
-        contenedorImg.style.visibility = "visible"; 
-        pueblos.style.visibility = "visible"; 
+        //Elimino las imágenes por si el usuario cambia que no aparezcan varias imágenes
+        for( let img of contenedorImg.getElementsByTagName("img")){
+            contenedorImg.removeChild(img);
+        }
+
         imagen.src = rutaImagen;
         imagen.alt = `Imagen ${isla}`;
-        imagen.style = "width: 100px; height: 100px;";
+        imagen.style.width = "33%";
+        pueblos.style.width = "33%";
         contenedorImg.appendChild(pueblos);
         contenedorImg.appendChild(imagen); //añado al contenedor la imagen
 
@@ -137,8 +136,6 @@ const codigo = () =>{
         parrafo.style.color = "green";
         parrafo.innerText = `Has elegido ${pueblo.innerText} es un municipio de la isla de ${islas.options[islas.selectedIndex].text}`;
     }
-
-    // NOTA para Yaiza: No he conseguido colocar correctamente 
 
 }
 window.onload = codigo;
