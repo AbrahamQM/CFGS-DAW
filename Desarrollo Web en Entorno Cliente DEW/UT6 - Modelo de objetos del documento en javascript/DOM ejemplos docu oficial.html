@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<br lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript">
+
+        // Bases del Modelo de Objetos del Documento (DOM).
+        const imprimirAtributos = () => {
+            console.log("El elemento apellidos contiene los pares atributo -> valor: ");
+            for (let x = 0; x < document.getElementById("apellidos").attributes.length; x++) {
+                var atributo = document.getElementById("apellidos").attributes[x];
+                console.log(atributo.nodeName + " -> " + atributo.nodeValue + "");
+            }
+        }
+
+        const convertirAPassw = () => {
+            document.getElementById("apellidos").attributes[0].nodeValue = "password";
+            console.log("--tipo del input actualizado.");
+            imprimirAtributos();
+        }
+        const convertirAPassw2 = () => {
+            document.getElementById("apellidos").attributes["type"].nodeValue = "password";
+            console.log("--tipo del input actualizado.");
+            imprimirAtributos();
+        }
+        const convertirAPassw3 = () => {
+            document.getElementById("apellidos").type = "password";
+            console.log("--tipo del input actualizado.");
+            imprimirAtributos();
+        }
+
+        const resetearAText = () => {
+            document.getElementById("apellidos").type = "text";
+            imprimirAtributos();
+        }
+
+        const introducirValor = () => {
+            document.getElementById("apellidos").setAttribute('type', 'text');
+            document.getElementById("apellidos").setAttribute('value', 'Cid Blanco');
+            imprimirAtributos();
+        }
+
+        //Acceso a los nodos de tipo texto.
+        const alert1 = () => {
+            alert(document.getElementsByTagName("p")[0]);
+            alert(document.getElementsByTagName("p")[0].childNodes[1]);
+            alert(document.getElementsByTagName("p")[0].childNodes[1].childNodes[0]);
+            alert(document.getElementsByTagName("p")[0].childNodes[1].childNodes[0].nodeValue);
+        }
+
+        const alert2 = () => {
+            alert(document.getElementsByTagName("p")[0].childNodes[1].firstChild.nodeValue);
+        }
+
+        // Creación y borrado de nodos.
+        const creaParrafo = () => {
+            let nuevoParrafo = document.createElement('p');
+            let nuevoTexto = document.createTextNode('Contenido añadido al párrafo.');
+            nuevoParrafo.appendChild(nuevoTexto);
+            document.getElementById('parrafo').appendChild(nuevoParrafo);
+        }
+
+        const creacionEInsercionElementos = () => {
+            //Creamos tres elementos nuevos: p, b, br
+            let elementoP = document.createElement('p');
+            let elementoB = document.createElement('b');
+            let elementoBR = document.createElement('br');
+
+            //Le asignamos un nuevo atributo title al elementoP que hemos creado.
+            elementoP.setAttribute('title', 'Parrafo creado desde JavaScript');
+
+            //Preparamos los nodos de texto
+            let texto1 = document.createTextNode('Con JavaScript se ');
+            let texto2 = document.createTextNode('pueden realizar ');
+            let texto3 = document.createTextNode('un monton');
+            let texto4 = document.createTextNode(' de cosas sobre el documento.');
+
+            //Añadimos al elemento B los nodos de texto2, elemento BR y texto3.
+            elementoB.appendChild(texto2);
+            elementoB.appendChild(elementoBR);
+            elementoB.appendChild(texto3);
+
+            //Añadimos al elemento P los nodos de texto1, elemento B y texto 4.
+            elementoP.appendChild(texto1);
+            elementoP.appendChild(elementoB);
+            elementoP.appendChild(texto4);
+
+            //insertamos el nuevo párrafo como un nuevo hijo de nuestro parrafo
+            document.getElementById('parrafo').appendChild(elementoP);
+        }
+
+        // Gestión de eventos.
+        document.addEventListener("DOMContentLoaded", function () {
+            //Meto aqui las funciones para que las cargue despues del documento evitando errores
+            //input
+            const gestionar = (miEvento) => {
+                alert(miEvento.type);
+            }
+
+
+            document.getElementById("inputEvento1").addEventListener('click', gestionar, false);
+            //formulario
+            //modificado de la oficial comentada despues del for
+            //Porque el contexto(this) dentro del html es el document
+            //el ejemplo es para estar dentro de un fichero .js aparte
+            const inputs = document.getElementById("formulario").getElementsByTagName("input");
+            const cambiar = (evt) => {
+                if (evt.keyCode == 13) { // Código de la tecla Enter
+                    // obtengo el elemento fuente y bajo niveles de nodos haste el siguiente elemento input text
+                    if (evt?.srcElement?.nextSibling?.nextSibling?.nextSibling?.nextSibling?.type == "text"){
+                        evt.srcElement.nextSibling.nextSibling.nextSibling.nextSibling.focus();
+                    }
+                }
+            }
+
+            for (let i = 0; i < inputs.length; i++) {
+                inputs[i].addEventListener("keypress", cambiar, false);
+            }
+
+            //=================Ejemplo original para fichero  .js=================E
+            // const cambiar = (evt) => {
+            //     if (evt.keyCode == 13)  // Código de la tecla Enter
+            //         if (this.nextSibling.nextSibling.type == "text")
+            //             this.nextSibling.nextSibling.focus();
+            // }
+            // let inputs = document.getElementsByTagName("input");
+            // for (let i = 0; i < inputs.length; i++) {
+            //     inputs[i].addEventListener("keypress", cambiar, false);
+            // }
+        })
+    </script>
+</head>
+
+<body>
+    <h1>Bases del Modelo de Objetos del Documento (DOM).</h1>
+    <br>
+    <h2>Acceso a los nodos de tipo atributo.</h2>
+    <input type="text" id="apellidos" name="apellidos" />
+    <button onclick="imprimirAtributos()">Imprimir atributos en consola</button>
+    <button onclick="convertirAPassw()">convertir a password</button>
+    <button onclick="convertirAPassw2()">convertir a password 2</button>
+    <button onclick="convertirAPassw3()">convertir a password 3</button>
+    <button onclick="introducirValor()">setear valor</button>
+    </br>
+    <button onclick="resetearAText()">Resetear</button>
+
+    </br>
+    <h2>Acceso a los nodos de tipo texto.</h2>
+    <button onclick="alert1()">Alert texto niveles</button>
+    <button onclick="alert2()">Alert texto html</button>
+
+    </br>
+    <h2>Creación y borrado de nodos.</h2>
+    <p title="Texto de un párrafo" id="parrafo">Esto es un ejemplo de <b>texto HTML<br /> que puedes tener</b> en tu
+        documento.</p>
+    <button onclick="creaParrafo()">crear parrafo</button>
+    <button onclick="creacionEInsercionElementos()">creacionEInsercionElementos</button>
+
+    </br>
+
+    <h1>Gestión de eventos.</h1>
+    <!-- 
+    Modelo de registro de eventos en línea:
+    --    Ejemplo: <a href="pagina.html" onClick="alertar()">Pulsa aqui</a>
+    Modelo de registro de eventos tradicional:
+    --    Ejemplo: document.getElementById("mienlace").onclick = alertar;
+
+RECOMENDADO: Modelo de registro avanzado de eventos según W3C:
+--++  Por ejemplo: document.getElementById("mienlace").addEventListener('click',alertar,false);
+
+    Modelo de registro de eventos según Microsoft:
+    --    Por ejemplo: document.getElementById("mienlace").attachEvent('onclick', alertar); 
+    -->
+    click en el imput para alert: <input type="text" id="inputEvento1" name="inputEvento1" />
+    <form name="formulario" id="formulario">
+        <label for="nombre">Nombre: </label>
+        <input type="text" id="nombre" name="nombre" />
+        <label for="apellidos">Apellidos: </label>
+        <input type="text" id="apellidos" name="apellidos" />
+        <label for="provincia">Provincia: </label>
+        <input type="text" id="provincia" name="provincia" />
+        <input type="button" id="enviar" value="Enviar" />
+    </form>
+</body>
+
+</html>

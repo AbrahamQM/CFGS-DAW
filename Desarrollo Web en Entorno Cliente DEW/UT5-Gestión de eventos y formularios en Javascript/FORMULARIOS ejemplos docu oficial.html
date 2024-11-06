@@ -1,0 +1,119 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>DWEC05 - Trabajando con objetos input de tipo radio</title>
+    <script type="text/javascript">
+        const convertirMayusculas = () => {
+            document.getElementById("nombre").value = document.getElementById("nombre").value.toUpperCase();
+        }
+
+        const mostrarDatos = () => {
+            for (let i = 0; i < document.formulario.actores.length; i++) {
+                if (document.formulario.actores[i].checked)
+                    alert(document.formulario.actores[i].value);
+            }
+        }
+
+        const marcar = () => {
+            document.getElementById("verano").checked = true;
+        }
+        const desmarcar = () => {
+            document.getElementById("verano").checked = false;
+        }
+
+        const consultar = () => {
+            let provincias = document.getElementById("provincias");
+            let texto = provincias.options[provincias.selectedIndex].text;
+            let valor = provincias.options[provincias.selectedIndex].value;
+            alert(`Datos de la opción seleccionada:\n\nTexto: ${texto}\nValor: ${valor}`);
+        }
+
+        const identificar = (objeto) => {
+            let nombre = objeto.name;
+            let id = objeto.id;
+            let valor = objeto.value;
+            let tipo = objeto.type;
+            alert(`Datos del campo pulsado:\n\nNombre: ${nombre}\nID: ${id}\nValor: ${valor}\nTipo: ${tipo}`);
+        }
+    </script>
+</head>
+
+<body>
+    <h1>Propiedad VALUE de un objeto INPUT de tipo TEXT</h1>
+    <form id="formularioNombre" action="pagina.php">
+        <p>
+            <label for="nombre">Nombre y Apellidos: </label>
+            <input type="text" id="nombre" name="nombre" value="" size="30" onblur="convertirMayusculas()">
+        </p>
+        <p>
+            Introduce tu Nombre y Apellidos y haz click fuera del campo.
+        </p>
+    </form>
+
+    <h1>Propiedad VALUE de un objeto INPUT de tipo CHECKBOX</h1>
+    <form action="" method="get">
+        <label for="verano">¿Te gusta el verano?</label>
+        <input type="checkbox" id="verano" name="verano" value="Si" />
+    </form>
+    <button onclick="marcar()">Marcar Checkbox</button>
+    <button onclick="desmarcar()">Desmarcar Checkbox</button>
+
+    <h1>Trabajando con objetos input de tipo radio</h1>
+    <form name="formulario" action="stooges.php">
+        <fieldset>
+            <legend>Selecciona tu actor favorito:</legend>
+            <label for="actor1">Willis</label>
+            <input type="radio" name="actores" id="actor1" value="Walter Bruce Willis - 19 de Marzo de 1955" checked>
+            <label for="actor2">Carrey</label>
+            <input type="radio" name="actores" id="actor-2" value="James Eugene Jim Carrey - 17 de Enero de 1962">
+            <label for="actor3">Tosar</label>
+            <input type="radio" name="actores" id="actor-3" value="Luis Tosar - 13 de Octubre de 1971">
+            <input type="button" id="consultar" name="consultar" value="Consultar Más Datos" onclick="mostrarDatos()">
+        </fieldset>
+    </form>
+
+
+    <h1>Trabajando con un objeto Select</h1>
+    <form id="formularioProvincias">
+        <p>
+            <label for="provincias">Seleccione provincia: </label>
+            <select name="provincias" id="provincias">
+                <option value="AL">Almería</option>
+                <option value="JA">Jaen</option>
+                <option value="GR">Granada</option>
+                <option value="MA">Málaga</option>
+                <option value="SE">Sevilla</option>
+                <option value="CO">Córdoba</option>
+                <option value="CA">Cádiz</option>
+                <option value="HU">Huelva</option>
+            </select>
+        </p>
+        <p>
+            Selecciona una opción y pulsa el botón.
+        </p>
+        <input type="button" name="boton" value="Consultar información de la opción" onclick="consultar()" />
+    </form>
+
+    <h1>Trabajando con this de un objeto </h1>
+    <form id="formularioIdentificar">
+        <p>
+            <label for="nombre">Nombre: </label>
+            <input type="text" name="nombre" id="nombre" value="Bob" onclick="identificar(this)"/>
+            <label for="apellidos">Apellidos: </label>
+            <input type="text" name="apellidos" id="apellidos" value="Esponja" onclick="identificar(this)"/>
+            <label for="edad">Edad: </label>
+            <input type="number" name="edad" id="edad" value="18" onclick="identificar(this)"/>
+            <label for="pais">Pais: </label>
+            <label for="pais1">España: </label>
+            <input type="radio" name="pais" id="pais1" value="ES" onclick="identificar(this)"/>
+            <label for="pais2">Francia: </label>
+            <input type="radio" name="pais" id="pais2" value="FR" onclick="identificar(this)"/>
+        </p>
+        <p>
+            Haga click en cada uno de los campos para ver más información.
+        </p>
+</body>
+
+</html>
