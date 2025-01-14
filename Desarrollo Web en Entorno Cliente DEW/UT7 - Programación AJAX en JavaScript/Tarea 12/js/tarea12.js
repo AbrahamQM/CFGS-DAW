@@ -14,7 +14,7 @@ const inicio = () => {
     formato aaaa-mm-dd.
     */
     const obtenerFecha = () => {
-        const hoy = new Date("2024-11-14"); //pongo el día que obtuve el xml para que funcione en el futuro
+        const hoy = new Date();
         hoy.setDate(hoy.getDate() + 2); //Incremento la fecha en 2 días
         const ano = hoy.getFullYear();
         const mes = hoy.getMonth() + 1; //los meses empiezan por 0

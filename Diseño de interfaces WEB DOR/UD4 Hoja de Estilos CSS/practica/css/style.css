@@ -1,0 +1,12 @@
+body {
+    background: linear-gradient(to bottom, #8e44ad, #c39bd3);
+}
+
+footer {
+    background: linear-gradient(to top, #4460ad, #591d70);
+}
+
+
+h1 {
+    font-family: 'Mountains of Christmas', cursive;
+}
