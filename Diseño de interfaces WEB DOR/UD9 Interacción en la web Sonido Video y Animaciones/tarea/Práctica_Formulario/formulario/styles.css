@@ -1,0 +1,160 @@
+/****************/
+/* styles.css */
+body {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    background-color: #f0f2f5;
+    color: #333;
+    display: grid;
+    place-items: center;
+    min-height: 100vh;
+    margin: 0;
+    transition: background-color 0.3s, color 0.3s;
+    overflow: hidden;
+}
+
+body.day-mode {
+    background: linear-gradient(to right, #a1c4fd, #c2e9fb);
+}
+
+body.dark-mode {
+    background: linear-gradient(to right, #2c3e50, #4ca1af);
+    color: #e0e0e0;
+}
+
+h1 {
+    color: #ff5a5f;
+    text-align: center;
+    font-weight: bold;
+}
+
+body.dark-mode h1 {
+    color: #ff5a5f;
+}
+
+.container {
+    max-width: 600px;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    gap: 20px;
+}
+
+form {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 15px;
+    background-color:rgb(24, 196, 190);
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+body.dark-mode form {
+    background-color: #1e1e1e;
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.5);
+    color:  #e0e0e0;
+}
+
+button {
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    align-self: center;
+    background-color: #ff5a5f;
+    color: #ffffff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+button:hover {
+    background-color: #e04848;
+    transform: translateY(-2px);
+}
+
+input, select, textarea {
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    padding: 10px;
+    font-size: 14px;
+    transition: background-color 0.3s, border-color 0.3s;
+}
+
+body.dark-mode input, body.dark-mode select, body.dark-mode textarea {
+    background-color: #333;
+    border-color: #555;
+    color: #e0e0e0;
+}
+
+input:focus, select:focus, textarea:focus {
+    outline: none;
+    border-color: #ff5a5f;
+    box-shadow: 0 0 5px rgba(255, 90, 95, 0.5);
+}
+
+body.dark-mode input:focus, body.dark-mode select:focus, body.dark-mode textarea:focus {
+    border-color: #ff5a5f;
+    box-shadow: 0 0 5px rgba(255, 90, 95, 0.5);
+}
+
+/* Flexbox para los botones de radio */
+.form-check {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* Uso de flex para el pie del formulario */
+.text-center {
+    display: flex;
+    justify-content: center;
+}
+
+/* Estilo para el selector de modo */
+.mode-selector {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.mode-selector img {
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+    transition: transform 0.3s;
+}
+
+body.dark-mode .mode-selector img {
+    filter: invert(1);
+}
+
+.mode-toggle {
+    position: relative;
+    width: 60px;
+    height: 30px;
+    background-color: #ccc;
+    border-radius: 15px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.mode-toggle::before {
+    content: '';
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    width: 24px;
+    height: 24px;
+    background-color: #fff;
+    border-radius: 50%;
+    transition: transform 0.3s;
+}
+
+body.dark-mode .mode-toggle {
+    background-color: #ff5a5f;
+}
+
+body.dark-mode .mode-toggle::before {
+    transform: translateX(30px);
+}
+
