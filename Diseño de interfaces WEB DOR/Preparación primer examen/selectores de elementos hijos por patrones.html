@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Ejemplo de patrones con nth-child</title>
+  <style>
+    ul {
+      list-style-type: none;
+      padding: 0;
+    }
+    ul li {
+      padding: 10px;
+      margin: 5px 0;
+    }
+    /* Aplicar patrones */
+    ul li:nth-child(4n) {
+      background-color: #11d86b; /* Cada cuarto elemento */
+    }
+    ul li:nth-child(3n+2) {
+      color: blue; /* Cada tercer elemento, comenzando desde el segundo */
+    }
+    ul li:nth-child(-n+3) {
+      font-weight: bold; /* Los primeros 3 elementos */
+    }
+    /* ul li:nth-child(odd) {
+      background-color: #f9f9f9; /* Elementos impares 
+    }
+    ul li:nth-child(even) {
+      background-color: #f2f2f2; /* Elementos pares 
+    } */
+    ul li:nth-child(5n+2),
+    ul li:nth-child(5n+3) {
+      color: red; /* Segundo y tercer elemento en grupos de cinco */
+    }
+    ul li:nth-child(3n+1) {
+      font-style: italic; /* Cada tercer elemento comenzando desde el primero */
+    }
+  </style>
+</head>
+<body>
+  <ul>
+    <li>Elemento 1</li>
+    <li>Elemento 2</li>
+    <li>Elemento 3</li>
+    <li>Elemento 4</li>
+    <li>Elemento 5</li>
+    <li>Elemento 6</li>
+    <li>Elemento 7</li>
+    <li>Elemento 8</li>
+    <li>Elemento 9</li>
+    <li>Elemento 10</li>
+    <li>Elemento 11</li>
+    <li>Elemento 12</li>
+  </ul>
+</body>

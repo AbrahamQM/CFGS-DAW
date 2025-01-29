@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Especificidad CSS</title>
+  <style>
+    p { color: rgb(255, 0, 174); }              /* especificidad: 0,0,0,1 */
+    .miClase { color: green; }       /* especificidad: 0,0,1,0 */
+    #miID { color: blue; }           /* especificidad: 0,1,0,0 */
+    p.inline { color: yellow; }      /* especificidad: 0,0,1,1 */
+  </style>
+</head>
+<body>
+  <p  class="miClase" id="miID" style="color: red;"> p class="miClase" id="miID" style="color: red;"</p>
+  <p  class="miClase" id="miID" > p class="miClase" id="miID"</p>
+  <p  class="miClase" > p class="miClase"</p>
+  <p ">p</p>
+  estilos:
+  <br>p { color: rgb(193, 23, 125); "fucsia del que solo es párrafo"}       
+  <br>.miClase { color: green; }       
+  <br>#miID { color: blue; }           
+</body>
+</html>
