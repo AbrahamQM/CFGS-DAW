@@ -7,10 +7,18 @@
     a[href^="http"] {
       color: red;
     }
+    a[href^="#"] {
+      color: rgb(26, 255, 0);
+    }
+    a[href^="#"]:hover {
+      background-color: gray;
+    }
+
   </style>
 </head>
 <body>
   <a href="http://example.com">Enlace externo</a>
+  <a href="#" t>Enlace en midomninio</a>
   <a href="/about">Enlace interno</a>
 </body>
 </html>
