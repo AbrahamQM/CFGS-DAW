@@ -1,20 +1,26 @@
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f0f0f0;
+    font-family: "Raleway", serif;
+    font-optical-sizing: auto;
+    font-style: normal;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
     margin: 0;
-    background-color: orange;
+    background: linear-gradient(180deg, #AFD7E4, #E4F9FF);
+}
+h1 {
+    padding: 30px;
+    font-family: 'Montserrat', sans-serif;
 }
 
 table {
-    border-collapse: collapse;
+    border-radius: 10px;
     width: 80%;
-    margin: 20px 0;
-    background-color: #fff;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin: 0 auto; /* Asegúrate de que la tabla esté centrada */
+    margin-bottom: 20px;
+    background-color: #133917;
+    box-shadow: 0 0 10px rgb(181, 211, 45);
 }
 
 th, td {
@@ -26,12 +32,44 @@ th, td {
 th {
     background-color: #4CAF50;
     color: white;
+    display: flex;
+    width: 100%;
 }
 
-tr:nth-child(even) {
+/* tr:nth-child(even) {
     background-color: #f2f2f2;
+} */
+
+.container {
+    text-align: center; /* Centra el contenido horizontalmente */
+    height: 100vh; /* Asegúrate de que el contenedor ocupe toda la altura de la ventana */
+    display: block; /* Cambia de flex a block para permitir que los elementos se apilen verticalmente */
 }
 
 tr:hover {
     background-color: #ddd;
+}
+
+.table-layouts{
+    background-color: #A1D071;
+}
+
+.table-layouts:hover{
+    background-color: #B4B83D;
+}
+
+.td-left{
+    background-color: #707E2A;
+}
+
+.td-left:hover{
+    background-color: #B4B83D;
+}
+
+.datos{
+    background-color: #AFD7E4;
+}
+
+.datos:hover{
+    background-color: #B4B83D;
 }
