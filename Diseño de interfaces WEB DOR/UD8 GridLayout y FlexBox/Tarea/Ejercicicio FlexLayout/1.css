@@ -1,0 +1,84 @@
+/* Me tocó el Ejercicio 6 */
+
+.container {
+    display: flex;
+    align-items: flex-start;
+    justify-content: start;
+    border: 2px solid red;
+    width: 100%;     
+    height: 100vh;
+}
+
+.column {
+    display: flex;
+    flex: inline-flex;
+    height: 100px;
+    width: 100px;
+    color: white;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.column:nth-child(1) { 
+    background-color: green; 
+    height: 20px;
+    width: 20px;
+    margin-top: 4em;
+}
+.column:nth-child(2) { 
+    background-color: blue; 
+    height: 60px;
+    width: 30px;
+    margin-top: 2em;
+    font-size: 1.em;
+}
+
+.column:nth-child(3) {
+     background-color: violet; 
+     height: 80px;
+     width: 35px;
+     margin-top: 1em;
+}
+.column:nth-child(4) { 
+    background-color: #00008B; 
+    height: 100px;
+    width: 10%;
+}
+.column:nth-child(5) { 
+    background-color: yellow; 
+    width: 10px;
+    height: 10px;
+    margin-top: 4.5em;
+}
+.column:nth-child(6) { 
+    background-color: orange; 
+    height: 60px;
+    width: 30px;
+    margin-top: 2em;
+}
+.column:nth-child(7) { 
+    background-color: brown;     
+    height: 60px;
+    width: 30px;
+    margin-top: 2em;
+}
+.column:nth-child(8) { 
+    background-color: grey; 
+    height: 60px;
+    width: 30px;
+    margin-top: 2em;
+}
+.column:nth-child(9) { 
+    background-color: green; 
+    height: 60px;
+    width: 30px;
+    margin-top: 2em;
+}
+.column:nth-child(10) { 
+    background-color: blue; 
+    height: 55px;
+    width: 55px;
+    margin-top: 2.2em;
+}
