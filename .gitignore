@@ -16,3 +16,6 @@
 # Ignora todos los archivos .7z
 *.7z
 
+# Ignora la carpeta de la maq virtual con ángular
+**/maqVirtual/
+
