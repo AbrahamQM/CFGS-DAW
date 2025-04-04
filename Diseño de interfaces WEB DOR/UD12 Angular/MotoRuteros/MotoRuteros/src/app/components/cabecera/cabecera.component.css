@@ -1,27 +1,36 @@
-header div.fondo_titulo {
-    background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/9/94/Abstract_blue_background7.jpg/800px-Abstract_blue_background7.jpg');
-    background-repeat: no-repeat;
+/* Importo una fuente relacionada con el mundo del motor */
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
+
+/* Estilos para el encabezado */
+header div.title_background {
+    position: relative; /* Permite posicionar elementos hijos con position: absolute */
+    display: flex; /* Habilita Flexbox para organizar los elementos */
+    justify-content: center; /* Centra el texto horizontalmente */
+    align-items: center; /* Centra verticalmente los elementos dentro del contenedor */
+    background-color: #40E0D0; /* Establece el color de fondo del header en turquesa */
     background-size: cover;
     background-position: center;
     height: 150px;
-    line-height: 150px;
-    text-align: center;
+    padding: 0 20px; /* Agrega un espacio interno a los lados */
 }
 
-header div.fondo_titulo span{
-    font-weight: bold;
-    color: white;
-    vertical-align: middle;
-    line-height: normal;
-    font-size: 36px;
-    background-color: rgba(214, 122, 18, 0.205);
+/* Logo del título */
+header div.title_background img {
+    position: absolute; /* Posiciona el logo de forma absoluta dentro del contenedor */
+    left: 3rem; /* Coloca el logo en la esquina izquierda con un margen de 20px */
+    height: auto;
+    width: 10rem;
+    transition: transform 0.3s ease;
 }
 
-header.titulo_principal h1{
-    margin: 0px;
-    height: 100px;
-    line-height: 100px;
-    text-align: center;
+/* Efecto hover en el logo */
+header div.title_background img:hover {
+    transform: scale(1.2); /* Aumenta el tamaño del logo al pasar el cursor */
+}
+
+/* Título principal */
+header.main_title h1 {
+    font-size: 6rem;
+    text-align: center; /* Centra el texto horizontalmente */
     font-family: 'Orbitron', sans-serif;
-    background-color: #e3e1ec;
 }
