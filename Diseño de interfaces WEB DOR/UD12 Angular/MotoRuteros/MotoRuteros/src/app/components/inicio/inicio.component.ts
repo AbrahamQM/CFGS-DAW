@@ -11,7 +11,7 @@ export class InicioComponent {
   public pulsaciones:number;
 
   constructor(){
-    this.titulo = "CesarMusic";
+    this.titulo = "MotoRuteros";
     this.pulsaciones = 0;
   }
 
