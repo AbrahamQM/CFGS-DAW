@@ -1,47 +1,48 @@
-
-
+/* Estilos para el pie de página */
 .footer {
-  background-color: #40E0D0; /* Color turquesa */
-  text-align: center;
-  padding: 20px;
-  font-family: Arial, sans-serif;
-  color: #ffffff;
+  background-color: #40E0D0; /* Establece el color de fondo del footer en turquesa */
+  text-align: center; /* Centra horizontalmente el contenido del footer */
+  padding: 20px; /* Agrega un espacio interno (padding) de 20px alrededor del contenido */
+  font-family: Arial, sans-serif; /* Define la fuente del texto como Arial o una fuente sans-serif */
+  color: #ffffff; /* Establece el color del texto en blanco */
 }
 
 .footer .social-icons {
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  gap: 5px;
-  margin-right: 50px;
+  display: flex; /* Habilita Flexbox para organizar los elementos hijos */
+  justify-content: flex-end; /* Alinea los elementos hijos al final del contenedor (a la derecha) */
+  align-items: center; /* Centra verticalmente los elementos dentro del contenedor */
+  gap: 5px; /* Agrega un espacio de 5px entre los elementos hijos */
+  margin-right: 50px; /* Agrega un margen derecho de 50px al contenedor */
 }
 
 .footer .social-icons a {
-  margin: 0 10px;
-  display: inline-block;
+  margin: 0 10px; /* Agrega un margen horizontal de 10px a los enlaces */
+  display: inline-block; /* Asegura que los enlaces se comporten como elementos en línea con bloque */
 }
 
 .footer .social-icons img {
-  width: 32px;
-  height: 32px;
-  transition: transform 0.3s ease;
+  width: 32px; /* Define el ancho de las imágenes como 32px */
+  height: 32px; /* Define la altura de las imágenes como 32px */
+  transition: transform 0.3s ease; /* Agrega una transición suave de 0.3 segundos al transform */
 }
 
 .footer .social-icons img:hover {
-  transform: scale(1.6);
+  transform: scale(1.6); /* Aumenta el tamaño de las imágenes al pasar el cursor (hover) */
 }
 
-.footer p {
-  margin: 0;
-  font-size: 14px;
+.footer .social-icons p {
+  display: flex; /* Habilita Flexbox para el párrafo */
+  align-items: center; /* Centra verticalmente el contenido dentro del párrafo */
+  margin: 0; /* Elimina el margen predeterminado del párrafo */
+  font-size: 14px; /* Establece el tamaño de la fuente en 14px */
 }
 
 .footer p a {
-  color: #ffffff;
-  text-decoration: none;
+  color: #ffffff; /* Establece el color del texto de los enlaces en blanco */
+  text-decoration: none; /* Elimina el subrayado predeterminado de los enlaces */
 }
 
 .footer p a:hover {
-  text-decoration: underline;
+  text-decoration: underline; /* Agrega un subrayado al texto de los enlaces al pasar el cursor (hover) */
 }
 
