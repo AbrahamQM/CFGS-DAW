@@ -1,0 +1,26 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50rem;
+}
+
+.texts {
+    width: 50%;
+    padding: 8rem;
+}
+
+.photo-frame{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 30%;
+    overflow: hidden;
+    border-radius: 50%;
+    margin-right: 8rem;
+}
+
+img {
+    object-fit: cover;
+    width: 100%;
+}
