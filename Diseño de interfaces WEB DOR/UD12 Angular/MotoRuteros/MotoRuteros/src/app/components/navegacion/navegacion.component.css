@@ -25,7 +25,7 @@ nav.menu_principal {
     background-color: #40E0D0; /* Color turquesa */
     color: black; /* Texto en negro */
     font-size: 16px; /* Ajusta el tamaño del texto */
-    padding: 10px 60px; /* Espaciado interno para hacerlo cómodo */
+    padding: 5px 20px; /* Espaciado interno para hacerlo cómodo */
     border: none; /* Sin borde */
     border-radius: 15px; /* Esquinas redondeadas */
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2); /* Sombra sutil */
