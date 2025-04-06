@@ -1,10 +1,19 @@
 <nav class="menu_principal">
-	<ul>
-		<li [routerLinkActive]="['seleccionado']" [routerLinkActiveOptions]="{exact:true}"><a [routerLink]="['/']">Inicio</a></li><!--     -->
-		<li [routerLinkActive]="['seleccionado']"><a [routerLink]="['/musica']">Música</a></li><!--     -->
-		<li [routerLinkActive]="['seleccionado']"><a [routerLink]="['/cine']">Cine</a></li><!--     -->
-		<li [routerLinkActive]="['seleccionado']"><a [routerLink]="['/libros']">Libros</a></li><!--     -->
-		<li><a>Podcasts</a></li><!--   -->
-		<li><a>Contacto</a></li>
-	</ul>
+    <div class="menu">
+        <button class="custom-button" [routerLink]="'/'" [routerLinkActive]="'seleccionado'" [routerLinkActiveOptions]="{exact:true}">
+            Inicio
+        </button>
+        <button class="custom-button" [routerLink]="'/musica'" [routerLinkActive]="'seleccionado'">
+            Música
+        </button>
+        <button class="custom-button" [routerLink]="'/cine'" [routerLinkActive]="'seleccionado'">
+            Cine
+        </button>
+        <button class="custom-button" [routerLink]="'/libros'" [routerLinkActive]="'seleccionado'">
+            Libros
+        </button>
+        <button class="custom-button" [routerLink]="'/contacto'" [routerLinkActive]="'seleccionado'">
+            Contacto
+        </button>
+    </div>
 </nav>

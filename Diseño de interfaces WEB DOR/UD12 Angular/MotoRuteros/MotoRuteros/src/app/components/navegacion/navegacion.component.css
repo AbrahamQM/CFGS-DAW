@@ -1,27 +1,41 @@
 nav.menu_principal {
-    border-top: #AAA 2px solid;
-    border-bottom: #AAA 2px solid;
-    background-color: #EEE;
+    display: flex;
+    justify-content: center; /* Centra los elementos horizontalmente */
+    width: 100%; /* Asegura que el menú ocupe todo el ancho disponible */
 }
 
-nav.menu_principal ul {
-    margin: 0px;
-    padding: 0px;
-    font-size: 20px;
-    text-align: center;
+.menu{
+    display: flex;
+    justify-content: space-around; /* Centra los elementos horizontalmente */
+    width: 100%; /* Asegura que el menú ocupe todo el ancho disponible */
+
 }
 
-nav.menu_principal ul > li{
-    display:inline-block;
-    padding:15px;
-    height:30px;
-    line-height:30px;
+.menu button{
+    margin: 1rem 5rem; /* Espacio entre los botones */
 }
 
-nav.menu_principal ul > li > a {
-    text-decoration: none;
-    color: black;
+.custom-button.seleccionado {
+    background-color: #3FB9ED; /* Cambia el color de fondo cuando está seleccionado */
+    color: white; /* Cambia el color del texto */
+    border: 2px solid #ffffff; /* Agrega un borde blanco */
 }
-.seleccionado{
-    background-color: olive;
+
+.custom-button {
+    background-color: #40E0D0; /* Color turquesa */
+    color: black; /* Texto en negro */
+    font-size: 16px; /* Ajusta el tamaño del texto */
+    padding: 10px 60px; /* Espaciado interno para hacerlo cómodo */
+    border: none; /* Sin borde */
+    border-radius: 15px; /* Esquinas redondeadas */
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2); /* Sombra sutil */
+    cursor: pointer; /* Cambia el cursor al pasar sobre el botón */
+    transition: transform 0.2s ease, box-shadow 0.2s ease; /* Efectos suaves */
+    width: 100%;
 }
+  
+.custom-button:hover {
+    transform: scale(1.05); /* Hace el botón ligeramente más grande al pasar el cursor */
+    box-shadow: 0px 6px 8px rgba(0, 0, 0, 0.3); /* Intensifica la sombra al pasar el cursor */
+}
+  
