@@ -14,8 +14,15 @@ header div.title_background {
     padding: 0 20px; /* Agrega un espacio interno a los lados */
 }
 
-/* Logo del título */
-header div.title_background img {
+/* Enlace del logo */
+a{
+    display: flex; /* Habilita Flexbox para organizar los elementos */
+    justify-content: center; /* Centra el texto horizontalmente */
+    align-items: center; /* Centra verticalmente los elementos dentro del contenedor */
+}
+
+/* Logo */
+img {
     position: absolute; /* Posiciona el logo de forma absoluta dentro del contenedor */
     left: 3rem; /* Coloca el logo en la esquina izquierda con un margen de 20px */
     height: auto;
