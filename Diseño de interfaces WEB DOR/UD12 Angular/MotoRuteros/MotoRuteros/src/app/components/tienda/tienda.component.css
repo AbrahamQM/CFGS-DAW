@@ -19,15 +19,13 @@ p{
     align-items: center;
     justify-content: center;
     height: 100%;
-    
 }
 
 .container{
     display: flex;
     align-items: center;
-    justify-content: center;
-    width: 50%;
-    height: 40rem;
+    width: 70%;
+    height: 32rem;
     padding: 8rem;
 }
 

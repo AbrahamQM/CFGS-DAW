@@ -1,28 +1,40 @@
+
+
 h1{
     font-size: 5em;
     text-align: center;
+    margin: 0em;
 }
 
 p{
-    font-size: 1.5em;
+    font-size: 1em;
     text-align: center;
-    width: 100%; /* Asegura que el texto ocupe todo el ancho disponible */
+    width: 80%; /* Asegura que el texto ocupe todo el ancho disponible */
     word-wrap: break-word; /* Ajusta las palabras largas al ancho del contenedor */
     overflow-wrap: break-word; /* Alternativa para ajustar palabras largas */
 }
 
 img{
     border: 2px solidrgb(15, 46, 26);
-    width: 15em;
+    width: 10em;
     height: auto;
     max-width: 100%; /* Las imágenes no excederán el ancho de la columna */
 }
+
+.gorras{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
 
 .container{
     display: flex;
     justify-content: space-between; /* Espacio uniforme entre columnas */
     align-items: stretch; /* Asegura que ambas columnas tengan la misma altura */
-    width: 100%;
+    width: 80%;
 }
 
 .column{
@@ -30,8 +42,8 @@ img{
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 50%; /* Ambas columnas ocuparán el 50% del contenedor */
-    margin: 2rem;
+    width: 40%; /* Ambas columnas ocuparán el 50% del contenedor */
+    margin: 0.5rem;
     box-sizing: border-box; /* Asegura que padding y border no afecten el ancho */
 }
 
@@ -41,8 +53,8 @@ img{
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    width: 60%;
-    height: 80%;
+    width: 80%;
+    height: 60%;
     margin: 2rem;
     padding: 2rem;
     background-color:rgb(92, 151, 145); /* Color de fondo */
