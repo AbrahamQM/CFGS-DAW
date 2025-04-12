@@ -5,6 +5,8 @@ import { TiendaComponent } from './components/tienda/tienda.component';
 import { GaleriaComponent } from './components/galeria/galeria.component';
 import { ContactoComponent } from './components/contacto/contacto.component';
 import { ErrorComponent } from './components/error/error.component';
+import { CamisetasComponent } from './components/tienda/camisetas/camisetas.component';
+import { GorrasComponent } from './components/tienda/gorras/gorras.component';
 
 //Rellenamos las rutas, lo llevamos al navegador para comprobar el funcionamiento
 export const routes: Routes = [
@@ -13,6 +15,8 @@ export const routes: Routes = [
     {path: 'rutas', component: RutasComponent},
     {path: 'rutas/:destino', component: RutasComponent},
     {path: 'tienda', component: TiendaComponent},
+    {path: 'camisetas', component: CamisetasComponent},
+    {path: 'gorras', component: GorrasComponent},
     {path: 'galeria', component: GaleriaComponent},
     {path: 'contacto', component: ContactoComponent},
     {path: '**', component: ErrorComponent}
