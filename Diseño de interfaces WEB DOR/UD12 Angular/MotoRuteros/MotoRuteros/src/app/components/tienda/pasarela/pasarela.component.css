@@ -1,0 +1,87 @@
+/* filepath: c:\Users\abrah\Desktop\daw\Diseño de interfaces WEB DOR\UD12 Angular\MotoRuteros\MotoRuteros\src\app\components\tienda\pasarela\pasarela.component.css */
+
+.payment-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 50%;
+    margin: 3rem auto;
+    padding: 4rem;
+    background-color: #40E0D0; /* Color turquesa */
+    border-radius: 25px; /* Bordes redondeados */
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Sombra */
+    font-family: 'Orbitron', sans-serif;
+    color: black;
+}
+
+h1{
+    font-size: 5em;
+    text-align: center;
+}
+
+.payment-logo {
+    width: 50%;
+    margin-bottom: 1.5rem;
+}
+
+.payment-form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+label {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+}
+
+input {
+    font-size: 1rem;
+    padding: 0.5rem;
+    margin-bottom: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.expiration-cvv {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.expiration-fields {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.amount-display {
+    font-size: 2rem;
+    font-weight: bold;
+    text-align: center;
+    margin: 1rem 0;
+    background-color: white;
+    padding: 0.5rem;
+    border-radius: 10px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.pay-button {
+    background-color: #3FB9ED; /* Color azul */
+    color: white;
+    font-size: 1.2rem;
+    padding: 0.8rem;
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    width: 100%;
+}
+
+.pay-button:hover {
+    transform: scale(1.05);
+    box-shadow: 0px 6px 8px rgba(0, 0, 0, 0.3);
+}
