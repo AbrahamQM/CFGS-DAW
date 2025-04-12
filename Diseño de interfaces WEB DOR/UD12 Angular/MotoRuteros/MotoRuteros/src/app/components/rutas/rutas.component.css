@@ -8,24 +8,30 @@
 .text-container {
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly; /* Distribuye los elementos verticalmente */
+    justify-content: center; /* Distribuye los elementos verticalmente */
     align-items: center;
     width: 33%; /* Ocupa un tercio del ancho */
     height: 100%; /* Ocupa el 100% de la altura del contenedor padre */
     padding: 20px;
     /* background-color: green; Para verificar visualmente */
+  
 }
 
 p{
     width: 80%;      
-    height: auto;
-    /* background-color: #f0f0f0; Para verificar visualmente */
+    font-size: 1.4em; /* Tamaño de fuente para pantallas grandes */
+    /* background-color:rgb(190, 72, 72); /*Para verificar visualmente */
 }
 
 .text{ 
-    margin-top: 20%;
+    margin-top: 18%;
     margin-bottom: 20%;
 } 
+
+#last-text{
+    margin-top: 20%;
+    margin-bottom: 20%;
+}
 
 .img-left-container{
     display: flex;
@@ -36,7 +42,6 @@ p{
     height: 100%;
     padding: 20px;
     /* background-color: blue; Para verificar visualmente */
-
 }
 
 .img-right-container{
