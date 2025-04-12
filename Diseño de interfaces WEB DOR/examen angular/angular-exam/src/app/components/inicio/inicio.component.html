@@ -1,0 +1,43 @@
+<div class="container">
+    <div class="texts">
+        <h1>Bienvenidos al club literario Canay Readers</h1>
+        <p>
+            El Club de Lectura Tenerife es un grupo de personas motivadas por el gusto de la lectura que, desde el año 2002, se reúnen en la Pecera de la Biblioteca Municipal Central los martes alternos a las 20:00 con la finalidad de compartir la experiencia de la lectura de un libro elegido por votación de los participantes.
+
+            Gracias al catálogo que ofrece el Servicio de Préstamo Colectivo para Clubes de Lectura del Servicio Administrativo de Cultura y Patrimonio Histórico del Cabildo de Tenerife, los miembros del club pueden acceder a una enorme cantidad de títulos en préstamo sin que el alto coste que supone la compra de los títulos necesarios les suponga un impedimento.
+
+            El aliciente de este club, consiste en la lectura personal e íntima, para luego poderla compartir en la sesiones grupales, en cuyas reuniones se debate el estilo literario, la acción, los personajes, y las ideas que el autor quiere transmitir en su obra.
+
+            El club está coordinado por CIFP César Manrique. Aquellas personas interesadas en saber más acerca de él pueden solicitar más información escribiendo a: canaryreaders&#64;hotmail.com
+        </p>
+    </div>
+    <div class="photo-frame">
+        <img src="inicio-collage.jpg" alt="Collage de libros" >
+    </div>
+
+</div>
+<div class="container_inf">
+    <div class="search">
+        <input type="text" placeholder="Buscar libros..." class="search-input">
+        <button class="search-button">
+            <img src="search-icon.svg" alt="Buscar">
+        </button>
+    </div>
+    <div class="book-list">
+        <a class="book-item" [routerLink]="'/detalle'">
+            <img src="alquimista.jpg" alt="El Alquimista">
+            <h3>El Alquimista</h3>
+            <p>Paulo Coelho</p>
+        </a >
+        <a class="book-item" [routerLink]="'/detalle'">
+            <img src="1984.jpg" alt="1984">
+            <h3>1984</h3>
+            <p>George Orwell</p>
+        </a >
+        <a class="book-item" [routerLink]="'/detalle'" >
+            <img src="principito.jpg" alt="El Principito">
+            <h3>El Principito</h3>
+            <p>Antoine de Saint-Exupéry</p>
+        </a >
+    </div>
+</div>
