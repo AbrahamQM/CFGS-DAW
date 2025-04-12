@@ -1,0 +1,41 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
+
+/* Estilos para el encabezado */
+header div.title_background {
+    position: relative; 
+    display: flex; 
+    justify-content: center; 
+    align-items: center;
+    background-color:  #9E90A2; /*694D75;*/
+    background-size: cover;
+    background-position: center;
+    height: 150px;
+    padding: 0 20px; 
+}
+
+/* Enlace del logo */
+a{
+    display: flex; 
+    justify-content: center; 
+    align-items: center;
+}
+
+/* Logo */
+img {
+    position: absolute; 
+    left: 3rem; 
+    width: 8rem;
+    transition: transform 0.3s ease;
+}
+
+/* Efecto hover en el logo */
+header div.title_background img:hover {
+    transform: scale(1.2); 
+}
+
+/* Título principal */
+header.main_title h1 {
+    font-size: 4rem;
+    text-align: center;
+    font-family: 'Orbitron', sans-serif;
+}
