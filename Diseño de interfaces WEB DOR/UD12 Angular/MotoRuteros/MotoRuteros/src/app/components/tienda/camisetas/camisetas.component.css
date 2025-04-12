@@ -12,7 +12,8 @@ p{
 }
 
 img{
-    border: none;
+    border: 2px solidrgb(15, 46, 26);
+    width: 15em;
 }
 
 .container{

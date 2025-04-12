@@ -1,0 +1,85 @@
+h1{
+    font-size: 5em;
+    text-align: center;
+}
+
+p{
+    font-size: 1.5em;
+    text-align: center;
+    width: 100%; /* Asegura que el texto ocupe todo el ancho disponible */
+    word-wrap: break-word; /* Ajusta las palabras largas al ancho del contenedor */
+    overflow-wrap: break-word; /* Alternativa para ajustar palabras largas */
+}
+
+img{
+    border: 2px solidrgb(15, 46, 26);
+    width: 15em;
+    height: auto;
+    max-width: 100%; /* Las imágenes no excederán el ancho de la columna */
+}
+
+.container{
+    display: flex;
+    justify-content: space-between; /* Espacio uniforme entre columnas */
+    align-items: stretch; /* Asegura que ambas columnas tengan la misma altura */
+    width: 100%;
+}
+
+.column{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 50%; /* Ambas columnas ocuparán el 50% del contenedor */
+    margin: 2rem;
+    box-sizing: border-box; /* Asegura que padding y border no afecten el ancho */
+}
+
+/*item*/
+.item{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 60%;
+    height: 80%;
+    margin: 2rem;
+    padding: 2rem;
+    background-color:rgb(92, 151, 145); /* Color de fondo */
+    border-radius: 25px; /* Bordes redondeados */
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Sombra */
+    font-family: 'Orbitron', sans-serif;
+    text-decoration: none;
+    color: black; /* Color del texto */
+}
+
+.item:hover {
+    transform: scale(1.05);
+    box-shadow: 0px 6px 8px rgba(0, 0, 0, 0.3);
+}
+
+/*Botones*/
+.custom-button.seleccionado {
+    background-color: #3FB9ED; /* Cambia el color de fondo cuando está seleccionado */
+    color: white; /* Cambia el color del texto */
+    border: 2px solid #ffffff; /* Agrega un borde blanco */
+}
+
+.custom-button {
+    background-color: #40E0D0; /* Color turquesa */
+    color: black; /* Texto en negro */
+    font-size: 16px; /* Ajusta el tamaño del texto */
+    padding: 5px 20px; /* Espaciado interno para hacerlo cómodo */
+    border: none; /* Sin borde */
+    border-radius: 15px; /* Esquinas redondeadas */
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2); /* Sombra sutil */
+    cursor: pointer; /* Cambia el cursor al pasar sobre el botón */
+    transition: transform 0.2s ease, box-shadow 0.2s ease; /* Efectos suaves */
+    width: 100%;
+}
+  
+.custom-button:hover {
+    transform: scale(1.05); /* Hace el botón ligeramente más grande al pasar el cursor */
+    box-shadow: 0px 6px 8px rgba(0, 0, 0, 0.3); /* Intensifica la sombra al pasar el cursor */
+}
+
