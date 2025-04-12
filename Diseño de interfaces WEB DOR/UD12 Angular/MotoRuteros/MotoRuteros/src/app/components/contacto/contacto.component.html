@@ -1,1 +1,19 @@
-<p>contacto works!</p>
+<div class="contact-container">
+    <h1>Contacta con nosotros</h1>
+    <form class="contact-form">
+        <label for="email">Mail</label>
+        <input type="email" id="email" placeholder="Tu correo electrónico" required />
+
+        <label for="message">Tu mensaje</label>
+        <textarea id="message" placeholder="Escribe tu mensaje aquí..." rows="15" required></textarea>
+
+        <div class="privacy-policy">
+            <input type="checkbox" id="privacy" required />
+            <label for="privacy">
+                Al marcar esta casilla, acepto los términos y condiciones de privacidad y consiento el uso de mis datos
+                personales según la normativa de la entidad.
+            </label>
+        </div>
+        <button type="submit" class="custom-button">Enviar</button>
+    </form>
+</div>
