@@ -8,9 +8,9 @@ header div.title_background {
     justify-content: center; /* Centra el texto horizontalmente */
     align-items: center; /* Centra verticalmente los elementos dentro del contenedor */
     background-color: #40E0D0; /* Establece el color de fondo del header en turquesa */
-    background-size: cover;
-    background-position: center;
-    height: 150px;
+    background-size: cover; /* Ajusta el tamaño de la imagen de fondo para cubrir todo el contenedor */
+    background-position: center; /* Centra la imagen de fondo */
+    height: 150px; /* Establece la altura del header */
     padding: 0 20px; /* Agrega un espacio interno a los lados */
 }
 
