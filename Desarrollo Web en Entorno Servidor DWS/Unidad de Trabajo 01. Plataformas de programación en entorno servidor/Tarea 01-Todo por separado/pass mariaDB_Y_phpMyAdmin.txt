@@ -1,0 +1,2 @@
+maridb: root
+phpmyadmin: MiClaveSuperSeguraDe32Caracteres123456
