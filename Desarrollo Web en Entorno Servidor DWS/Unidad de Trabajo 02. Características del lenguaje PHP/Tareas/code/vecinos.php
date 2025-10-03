@@ -16,31 +16,18 @@ $nombre = $_SESSION['nombre'];
 $usuario = $_SESSION['usuario']; // puede ser DNI o correo
 
 // Abrimos el fichero de datos
-$archivo = fopen("data/vecinos.dat", "r");
-$linea_num = 0;
+require_once "procesos/funciones.php";
+$vecinos = leerVecinos();
+$usuario = $_SESSION['usuario'];
 $misDatos = [];
 
-while (($linea = fgets($archivo)) !== false) {
-    $linea_num++;
-    if ($linea_num == 1) {
-        continue; // saltar cabecera
-    }
-
-    $campos = explode("|", trim($linea));
-    if (count($campos) < 11) {
-        continue;
-    }
-
-    list($nombre_apellidos, $dni, $telefono, $correo, $vivienda, $fechaAlta,
-         $cuotasPagadas, $cuotasPendientes, $fechaUltima, $rolVecino, $passVecino) = $campos;
-
-    // Si coincide con el usuario logueado (DNI o correo), guardamos sus datos
-    if ($usuario === $dni || $usuario === $correo) {
-        $misDatos = $campos;
+foreach ($vecinos as $v) {
+    if ($usuario === $v[1] || $usuario === $v[3]) { // DNI o correo
+        $misDatos = $v;
         break;
     }
 }
-fclose($archivo);
+
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -70,6 +57,6 @@ fclose($archivo);
     </table>
 
     <br>
-    <a href="procesos/logout.php">Cerrar sesión</a>
+    <a href="procesos/logout.php" class="boton">Cerrar sesión</a>
 </body>
 </html>

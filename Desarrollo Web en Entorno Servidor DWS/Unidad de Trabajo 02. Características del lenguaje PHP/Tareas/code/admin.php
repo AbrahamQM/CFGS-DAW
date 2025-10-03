@@ -65,10 +65,10 @@ $nombre = $_SESSION['nombre'];
         <input type="email" name="correo"><br><br>
 
         <label>Vivienda (ej: B1-2A):</label><br>
-        <input type="text" name="vivienda" required><br><br>
+        <input type="text" name="vivienda"><br><br>
 
         <label>Fecha de alta:</label><br>
-        <input type="date" name="fechaAlta" required><br><br>
+        <input type="date" name="fechaAlta"><br><br>
 
         <label>Cuotas pagadas:</label><br>
         <input type="number" name="cuotasPagadas" value="0"><br><br>
@@ -89,6 +89,6 @@ $nombre = $_SESSION['nombre'];
     </form>
 
     <br>
-    <a href="procesos/logout.php">Cerrar sesión</a>
+    <a href="procesos/logout.php" class="boton">Cerrar sesión</a>
 </body>
 </html>

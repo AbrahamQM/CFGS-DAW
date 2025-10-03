@@ -38,7 +38,7 @@ $vecinos = leerVecinos();
         <?php foreach ($vecinos as $v): ?>
         <tr>
             <?php
-            // Mostramos todos los campos menos la contraseña
+            // Mostramos todos los campos menos la contraseña que es el campo 10
             for ($i = 0; $i < 10; $i++) {
                 echo "<td>" . htmlspecialchars($v[$i]) . "</td>";
             }
@@ -48,7 +48,7 @@ $vecinos = leerVecinos();
     </table>
 
     <br>
-    <a href="procesos/logout.php">Cerrar sesión</a>
+    <a href="procesos/logout.php" class="boton">Cerrar sesión</a>
 
 </body>
 </html>
