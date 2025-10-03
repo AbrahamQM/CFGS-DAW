@@ -1,5 +1,6 @@
 Nombre_Apellidos|DNI|Teléfono|Correo|Bloque-Piso-Letra|FechaAlta|CuotasPagadas|CuotasPendientes|FechaUltimaCuota|Rol|Password
-Juan Pérez García|12345678A|600123456|juan@example.com|B1-2A|2023-01-15|12|0|2024-12-01|vecino|1234
-María López Díaz|87654321B|622987654|maria@example.com|B2-3B|2022-05-10|20|4|2024-05-01|presidente|abcd
 Admin Gestoría|00000000X||admin@gestoria.com|---|2021-09-01|0|0|---|administrador|admin
+María López Díaz|87654321B|622987654|maria@example.com|B2-3B|2022-05-10|20|4|2024-05-01|presidente|abcd
+Juan Pérez García|12345678A|600123456|juan@example.com|B1-2A|2023-01-15|12|0|2024-12-01|vecino|1234
 abr|123|666|a@a.com|1|2025-09-23|0|0||vecino|1234
+a|a|||f|2025-05-04|0|5|---|vecino|a
