@@ -37,14 +37,25 @@ $nombre = $_SESSION['nombre'];
             <th>Nombre</th><th>DNI</th><th>Teléfono</th><th>Correo</th>
             <th>Vivienda</th><th>Fecha Alta</th><th>Cuotas Pagadas</th>
             <th>Cuotas Pendientes</th><th>Última Cuota</th><th>Rol</th>
+            <th>Eliminar</th>
         </tr>
         <?php foreach ($vecinos as $v) { ?>
         <tr>
             <?php
-            // Mostramos todos los campos menos la contraseña
-            for ($i = 0; $i < 10; $i++) {
-                echo "<td>" . htmlspecialchars($v[$i]) . "</td>";
-            }
+                // Mostramos todos los campos menos la contraseña
+                for ($i = 0; $i < 10; $i++) {
+                    echo "<td>" . htmlspecialchars($v[$i]) . "</td>";
+                    if ($i === 9) {
+                        // Añadimos columna de acciones solo en la última iteración
+                        echo "<td>
+                            <form action='procesos/baja_vecino.php' method='post' 
+                                onsubmit=\"return confirm('¿Seguro que quieres eliminar a este vecino?');\">
+                                <input type='hidden' name='dni' value='" . htmlspecialchars($v[1]) . "'>
+                                <input type='submit' value='Eliminar'>
+                            </form>
+                        </td>";
+                    }
+                }
             ?>
         </tr>
         <?php } ?>
