@@ -92,5 +92,53 @@ function calcularCuotasPendientes($fechaAlta, $fechaUltimaTexto) {
     $hoy->modify('first day of this month');
 
     $intervalo = $fechaInicio->diff($hoy);
-    return ($intervalo->y * 12) + $intervalo->m -1; // Restamos 1 para excluir el mes actual
+    $intervalo = ($intervalo->y * 12) + $intervalo->m;
+    return $intervalo > 0 ? $intervalo -1 : 0; // Restamos 1 para excluir el mes actual
 }
+
+/**
+ * Actualiza las cuotas de la vivienda identificada por $dni y $vivienda.
+ *
+ * $dni: DNI del vecino
+ * $vivienda: identificador de la vivienda (ej. B1-2A)
+ * $cuotasPagadas: nuevo número de cuotas pagadas
+ * $fechaUltima: nueva fecha de la última cuota (formato Y-m-d)
+ *
+ * Recalcula automáticamente las cuotas pendientes con calcularCuotasPendientes($fechaAlta, $fechaUltima)
+ * y reescribe el fichero vecinos.dat.
+ */
+function actualizarCuotasPorVivienda($dni, $vivienda, $cuotasPagadas, $fechaUltima) {
+    $vecinos = leerVecinos();
+    $encontrado = false;
+
+    // Modificar en sitio
+    foreach ($vecinos as &$v) {
+        if ($v[1] === $dni && $v[4] === $vivienda) {
+            $v[6] = $cuotasPagadas;
+            $v[8] = $fechaUltima;
+            $v[7] = calcularCuotasPendientes($v[5], $v[8]);
+            $encontrado = true;
+            break;
+        }
+    }
+    unset($v); // 🔑 Romper la referencia para evitar sobrescrituras
+
+    if ($encontrado) {
+        $lineas = [];
+        // Cabecera fija
+        $lineas[] = "nombre|dni|telefono|correo|vivienda|fechaAlta|cuotasPagadas|cuotasPendientes|fechaUltima|rol|password";
+
+        foreach ($vecinos as $v) {
+            // Saltar la cabecera si leerVecinos() la incluye como primer registro
+            if ($v[0] === "nombre" && $v[1] === "dni") {
+                continue;
+            }
+            $lineas[] = implode("|", $v);
+        }
+
+        file_put_contents(FICHERO_VECINOS, implode("\n", $lineas) . "\n");
+    }
+
+    return $encontrado;
+}
+

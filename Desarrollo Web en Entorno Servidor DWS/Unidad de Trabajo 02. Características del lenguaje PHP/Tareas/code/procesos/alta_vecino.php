@@ -36,12 +36,16 @@ if ($nombre === '' || $dni === '' || $password === '') {
     die("❌ Error: Nombre, DNI y contraseña son obligatorios. <a href='../admin.php'>Volver</a>");
 }
 
-// validación si esa vivienda ya existe, y cumplimos con que el rol sea vecino o presidente(que tambien puede tener vivienda)
 if($rol === 'vecino' || $rol === 'presidente') {
     $vecinos = leerVecinos();
     foreach ($vecinos as $v) {
+        // validación si esa vivienda ya existe, y cumplimos con que el rol sea vecino o presidente(que tambien puede tener vivienda)
         if ($v[4] === $vivienda) {
             die("❌ Error: La vivienda ya está asignada a otro vecino. <a href='../admin.php'>Volver</a>");
+        }
+        //validación solo puede existir un presidente
+        if ($rol === 'presidente' && $v[9] === 'presidente') {
+            die("❌ Error: Ya existe un presidente en la comunidad y solo puede existir uno. <a href='../admin.php'>Volver</a>");
         }
     }
 }
@@ -63,14 +67,14 @@ echo "<br>cuotas pendientes calculadas: $cuotasPendientes<br>";
 
 
 // Construimos la línea a añadir
-// $nuevaLinea = $nombre . "|" . $dni . "|" . $telefono . "|" . $correo . "|" . $vivienda . "|" .
-//               $fechaAlta . "|" . $cuotasPagadas . "|" . $cuotasPendientes . "|" . $fechaUltima . "|" .
-//               $rol . "|" . $password . "\n";
+$nuevaLinea = $nombre . "|" . $dni . "|" . $telefono . "|" . $correo . "|" . $vivienda . "|" .
+              $fechaAlta . "|" . $cuotasPagadas . "|" . $cuotasPendientes . "|" . $fechaUltima . "|" .
+              $rol . "|" . $password . "\n";
 
 // Añadimos al fichero
-// file_put_contents("../data/vecinos.dat", $nuevaLinea, FILE_APPEND);
+file_put_contents("../data/vecinos.dat", $nuevaLinea, FILE_APPEND);
 
 // Redirigimos de vuelta al admin
-// header("Location: ../admin.php");
-// exit;
+header("Location: ../admin.php");
+exit;
 ?>
