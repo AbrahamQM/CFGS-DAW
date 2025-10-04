@@ -2,24 +2,38 @@
 /**
  * Archivo: admin.php
  * Descripción: Página de bienvenida para el rol "administrador".
- * Muestra todos los vecinos y ofrece un formulario para dar de alta nuevos.
+ * Muestra todos los vecinos y ofrece formularios para dar de alta, baja y modificar datos.
  */
 
 session_start();
 
-// Comprobamos que el usuario haya iniciado sesión y que su rol sea administrador
 if (!isset($_SESSION['rol']) || $_SESSION['rol'] !== 'administrador') {
     header("Location: login.php");
     exit;
 }
 
-// Importamos las funciones comunes
 require_once "procesos/funciones.php";
 
-// Obtenemos todos los vecinos desde el fichero .dat
 $vecinos = leerVecinos();
-
 $nombre = $_SESSION['nombre'];
+
+// Procesar modificación si se ha enviado
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['modificar'])) {
+    $dni = $_POST['dni'];
+    $viviendaOriginal = $_POST['vivienda_original']; // la vivienda original (clave)
+    $telefono = $_POST['telefono'];
+    $correo = $_POST['correo'];
+    $nuevaVivienda = $_POST['vivienda'];             // la nueva vivienda (editable)
+    $cuotasPagadas = (int)$_POST['cuotasPagadas'];
+    $fechaUltima = $_POST['fechaUltima'];
+
+    // Actualizamos cuotas y datos de esa unidad
+    actualizarCuotasPorVivienda($dni, $viviendaOriginal, $cuotasPagadas, $fechaUltima);
+    actualizarDatosUnidad($dni, $viviendaOriginal, $telefono, $correo, $nuevaVivienda);
+
+    header("Location: admin.php");
+    exit;
+}
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -37,28 +51,49 @@ $nombre = $_SESSION['nombre'];
             <th>Nombre</th><th>DNI</th><th>Teléfono</th><th>Correo</th>
             <th>Vivienda</th><th>Fecha Alta</th><th>Cuotas Pagadas</th>
             <th>Cuotas Pendientes</th><th>Última Cuota</th><th>Rol</th>
-            <th>Eliminar</th>
+            <th>Modificar</th><th>Eliminar</th>
         </tr>
-        <?php foreach ($vecinos as $v) { ?>
+        <?php foreach ($vecinos as $v): ?>
         <tr>
-            <?php
-                // Mostramos todos los campos menos la contraseña
-                for ($i = 0; $i < 10; $i++) {
-                    echo "<td>" . htmlspecialchars($v[$i]) . "</td>";
-                    if ($i === 9) {
-                        // Añadimos columna de acciones solo en la última iteración
-                        echo "<td>
-                            <form action='procesos/baja_vecino.php' method='post' 
-                                onsubmit=\"return confirm('¿Seguro que quieres eliminar a este vecino?');\">
-                                <input type='hidden' name='dni' value='" . htmlspecialchars($v[1]) . "'>
-                                <input type='submit' value='Eliminar'>
-                            </form>
-                        </td>";
-                    }
-                }
-            ?>
+            <!-- Formulario de modificación -->
+            <form method="post" action="admin.php">
+                <?php for ($i = 0; $i < 10; $i++): ?>
+                    <td>
+                        <?php
+                        if ($i === 2 || $i === 3 || $i === 4 || $i === 6 || $i === 8) {
+                            // Campos editables: teléfono, correo, vivienda, cuotas pagadas, fecha última cuota
+                            $nameMap = [
+                                2 => "telefono",
+                                3 => "correo",
+                                4 => "vivienda",
+                                6 => "cuotasPagadas",
+                                8 => "fechaUltima"
+                            ];
+                            $type = ($i === 6) ? "number" : (($i === 8) ? "date" : "text");
+                            echo "<input type='$type' name='{$nameMap[$i]}' value='" . htmlspecialchars($v[$i]) . "'>";
+                        } else {
+                            echo htmlspecialchars($v[$i]);
+                        }
+                        ?>
+                    </td>
+                <?php endfor; ?>
+                <td>
+                    <input type="hidden" name="dni" value="<?= htmlspecialchars($v[1]) ?>">
+                    <input type="hidden" name="vivienda_original" value="<?= htmlspecialchars($v[4]) ?>">
+                    <input type="submit" name="modificar" value="Modificar">
+                </td>
+            </form>
+            <!-- Formulario de eliminación -->
+            <td>
+                <form action="procesos/baja_vecino.php" method="post" 
+                      onsubmit="return confirm('¿Seguro que quieres eliminar a este vecino?');">
+                    <input type="hidden" name="dni" value="<?= htmlspecialchars($v[1]) ?>">
+                    <input type="hidden" name="vivienda" value="<?= htmlspecialchars($v[4]) ?>">
+                    <input type="submit" value="Eliminar">
+                </form>
+            </td>
         </tr>
-        <?php } ?>
+        <?php endforeach; ?>
     </table>
 
     <h3>Dar de alta un nuevo vecino</h3>

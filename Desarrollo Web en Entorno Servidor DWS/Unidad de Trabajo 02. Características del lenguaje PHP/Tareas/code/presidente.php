@@ -44,8 +44,8 @@ $vecinos = leerVecinos();
 <body>
     <h2>Bienvenido, <?php echo htmlspecialchars($nombre); ?> (presidente)</h2>
     <p>
-        Desde esta página puedes visualizar todos los datos de los vecinos y gestionar las cuotas. 
-        Recuerda que <strong>si actualizas el número de cuotas pagadas, también debes actualizar la fecha de la última cuota pagada y viceversa</strong>.
+        Desde esta página puedes visualizar todos los datos de los vecinos y gestionar las cuotas.
+        <br>Recuerda que <strong>si actualizas el número de cuotas pagadas, también debes actualizar la fecha de la última cuota pagada y viceversa</strong>.
     </p>
 
     <table border="1" style="border-collapse: collapse; padding: 5px;">
@@ -57,12 +57,12 @@ $vecinos = leerVecinos();
         <?php foreach ($vecinos as $v): ?>
         <tr>
             <?php
-            // Mostramos los primeros 6 campos tal cual
+            // Mostramos los primeros 6 campos no editables
             for ($i = 0; $i < 6; $i++) {
                 echo "<td>" . htmlspecialchars($v[$i]) . "</td>";
             }
             ?>
-            <!-- Formulario de edición de cuotas -->
+            <!-- Formulario de edición de cuotas con los campos intermedios no editables-->
             <form action="presidente.php" method="post">
                 <td>
                     <input type="number" name="cuotasPagadas" value="<?= htmlspecialchars($v[6]) ?>" min="0">
@@ -72,7 +72,7 @@ $vecinos = leerVecinos();
                     <input type="date" name="fechaUltima" value="<?= $v[8] !== '---' ? htmlspecialchars($v[8]) : '' ?>">
                 </td>
                 <td><?= htmlspecialchars($v[9]) ?></td> <!-- Rol -->
-                <td>
+                <td> <!-- Botón de envío del formulario y sus campos necesarios para identificarlo y procesar los cambios -->
                     <input type="hidden" name="dni" value="<?= htmlspecialchars($v[1]) ?>">
                     <input type="hidden" name="vivienda" value="<?= htmlspecialchars($v[4]) ?>">
                     <input type="submit" value="Actualizar">

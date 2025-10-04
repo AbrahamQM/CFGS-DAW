@@ -14,24 +14,30 @@ h2 {
     color: #0056b3;
 }
 
-/* Estilos para formularios*/
+/* Estilos para formularios generales (login, alta, etc.) */
 form {
     background: #fff;
     padding: 20px;
     border: 1px solid #ddd;
     width: 300px;
     border-radius: 5px;
+    margin-bottom: 20px;
 }
 
-/* Estilos para inputs y botón de formularios*/
-input[type="text"],
-input[type="password"] {
+/* Inputs en formularios generales */
+form input[type="text"],
+form input[type="password"],
+form input[type="email"],
+form input[type="date"],
+form input[type="number"] {
     width: 95%;
     padding: 8px;
     margin: 5px 0;
+    box-sizing: border-box;
 }
 
-input[type="submit"] {
+/* Botones de formularios generales */
+form input[type="submit"] {
     background: #0056b3;
     color: white;
     border: none;
@@ -40,11 +46,22 @@ input[type="submit"] {
     width: 100%;
 }
 
-input[type="submit"]:hover {
+form input[type="submit"]:hover {
     background: #003d80;
 }
 
-//estilos para el boton cerrar sesion
+/* Inputs dentro de tablas (admin.php, presidente.php, etc.) */
+table input[type="text"],
+table input[type="number"],
+table input[type="date"],
+table input[type="email"] {
+    width: 100px;   /* ajusta según lo que necesites */
+    padding: 4px;
+    font-size: 0.9em;
+    box-sizing: border-box;
+}
+
+/* Botón cerrar sesión */
 a.boton {
     display: inline-block;
     background: #0056b3;
