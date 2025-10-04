@@ -1,6 +1,5 @@
 nombre|dni|telefono|correo|vivienda|fechaAlta|cuotasPagadas|cuotasPendientes|fechaUltima|rol|password
-Admin Gestoría|00000000X||admin@gestoria.com|---|2021-09-01|22|1|2025-08-07|administrador|admin
-Admin Gestoría|00000000X||admin@gestoria.com|---|2021-09-01|0|0|---|administrador|admin
+Admin Gestoría|admin||admin@gestoria.com|---|2021-09-01|22|1|2025-08-07|administrador|admin
+Juan González|presi||admin@gestoria.com|---|2021-09-01|0|0|---|presidente|presi
 Juan Pérez García|12345678A|600123456|juan@example.com|B1-2A|2023-01-15|14|7|2025-02-12|vecino|1234
-a|a|||23|2025-10-03|0|0|---|vecino|12
-a|a|||23|2025-10-03|0|0|---|vecino|12
+a|a|a77|a@Corr|321|2025-10-04|3|1|2025-08-13|vecino|asd

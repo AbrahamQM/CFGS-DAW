@@ -3,7 +3,7 @@
  * Archivo: login.php
  * Descripción: Página inicial de acceso a la aplicación.
  * Muestra un formulario donde el usuario introduce su DNI/correo y contraseña.
- * Los datos se envían a proceso.php para validación.
+ * Los datos se envían a proceso_login para validación.
  */
 session_start(); // Iniciamos sesión para poder usar variables de sesión más adelante
 ?>
@@ -18,7 +18,7 @@ session_start(); // Iniciamos sesión para poder usar variables de sesión más 
 <body>
     <h2>Acceso a la aplicación</h2>
     <!-- Formulario de login -->
-   <form action="procesos/proceso.php" method="post">
+   <form action="procesos/proceso_login.php" method="post">
         <label for="usuario">Usuario (DNI o correo):</label><br>
         <input type="text" id="usuario" name="usuario" required><br><br>
 

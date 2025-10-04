@@ -142,3 +142,70 @@ function actualizarCuotasPorVivienda($dni, $vivienda, $cuotasPagadas, $fechaUlti
     return $encontrado;
 }
 
+/**
+ * Actualiza teléfono, correo y contraseña en todas las viviendas del vecino.
+ *
+ * $usuario: DNI o correo del vecino
+ * $telefono: nuevo teléfono
+ * $correo: nuevo correo
+ * $password: nueva contraseña (se aplica a todas sus viviendas)
+ */
+function actualizarDatosVecino($usuario, $telefono, $correo, $password) {
+    $vecinos = leerVecinos();
+
+    foreach ($vecinos as &$v) {
+        if ($usuario === $v[1] || $usuario === $v[3]) {
+            $v[2] = $telefono;
+            $v[3] = $correo;
+            $v[10] = $password;
+        }
+    }
+    unset($v); // romper referencia
+
+    $lineas = [];
+    $lineas[] = "nombre|dni|telefono|correo|vivienda|fechaAlta|cuotasPagadas|cuotasPendientes|fechaUltima|rol|password";
+    foreach ($vecinos as $v) {
+        if ($v[0] === "nombre" && $v[1] === "dni") continue;
+        $lineas[] = implode("|", $v);
+    }
+
+    file_put_contents(FICHERO_VECINOS, implode("\n", $lineas) . "\n");
+}
+
+
+/**
+ * Actualiza los datos de una vivienda concreta identificada por $dni y $vivienda.
+ *
+ * $dni: DNI del vecino
+ * $vivienda: vivienda actual (clave única junto con el DNI)
+ * $nuevoTelefono: nuevo teléfono
+ * $nuevoCorreo: nuevo correo
+ * $nuevaVivienda: nueva vivienda (si se quiere modificar)
+ */
+function actualizarDatosUnidad($dni, $vivienda, $nuevoTelefono, $nuevoCorreo, $nuevaVivienda) {
+    $vecinos = leerVecinos();
+    $encontrado = false;
+
+    foreach ($vecinos as &$v) {
+        if ($v[1] === $dni && $v[4] === $vivienda) {
+            $v[2] = $nuevoTelefono;
+            $v[3] = $nuevoCorreo;
+            $v[4] = $nuevaVivienda;
+            $encontrado = true;
+            break;
+        }
+    }
+    unset($v);
+
+    if ($encontrado) {
+        $lineas = [];
+        $lineas[] = "nombre|dni|telefono|correo|vivienda|fechaAlta|cuotasPagadas|cuotasPendientes|fechaUltima|rol|password";
+        foreach ($vecinos as $v) {
+            if ($v[0] === "nombre" && $v[1] === "dni") continue;
+            $lineas[] = implode("|", $v);
+        }
+        file_put_contents(FICHERO_VECINOS, implode("\n", $lineas) . "\n");
+    }
+
+    return $encontrado;
+}
