@@ -1,0 +1,162 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f4f4f9;
+    margin: 0;
+    padding: 40px;
+    color: #333;
+    display: flex;
+    justify-content: center;   /* centramos horizontalmente */
+    align-items: flex-start;   /* alineamos arriba */
+    min-height: 100vh;
+}
+
+main {
+    width: 100%;
+    max-width: 900px;
+    display: flex;
+    flex-direction: column; /* apila en columna */
+    gap: 30px;              /* espacio entre bloques */
+    align-items: center;    /* centra cada bloque */
+    text-align: center;
+}
+
+/* Títulos */
+h2, h3 {
+    color: #0056b3;
+    margin-bottom: 10px;
+}
+
+/* Tablas */
+table {
+  border-collapse: separate;
+  border-spacing: 0;
+  width: 100%;
+  font-size: 16px;
+  color: #333;
+  background-color: #fdfdfd;
+  border: 2px solid #4CAF50;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+th, td {
+  padding: 12px 16px;
+  text-align: center;
+  vertical-align: middle;
+  border-bottom: 1px solid #ddd;
+}
+
+th {
+  background-color: #4CAF50;
+  color: white;
+  font-weight: bold;
+}
+
+tr:hover {
+  background-color: #f1f1f1;
+}
+
+tr:last-child td {
+  border-bottom: none;
+}
+
+/* específico para arreglar la tabla de admin.php */
+/* Inputs dentro de tablas con problemas al mostrarse*/
+/* Formularios dentro de tablas */
+table form {
+    background: transparent;   
+    border: none;
+    box-shadow: none;
+    padding: 0;
+    margin: 0;
+    text-align: center;
+    max-width: none;
+}
+
+/* Inputs dentro de tablas: más pequeños y ajustados */
+table td input[type="text"],
+table td input[type="email"],
+table td input[type="date"],
+table td input[type="number"] {
+    width: auto;
+    min-width: 120px;       
+    max-width: 200px;       
+    padding: 6px 8px;
+    margin: 4px 0;
+    font-size: 0.9em;
+}
+
+/* Botón dentro de tablas */
+table td input[type="submit"] {
+    margin-top: 6px;
+    padding: 6px 12px;
+    font-size: 0.85em;
+    border-radius: 6px;
+}
+
+
+
+
+/* Formularios */
+form {
+    background: #fff;
+    padding: 20px;
+    border: 1px solid #ddd;
+    width: 100%;
+    max-width: 400px;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+    text-align: left;
+}
+
+/* Inputs */
+input[type="text"],
+input[type="password"],
+input[type="email"],
+input[type="date"],
+input[type="number"] {
+    width: 100%;
+    padding: 10px;
+    margin: 6px 0;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 0.95em;
+    box-sizing: border-box;
+    transition: border-color 0.3s;
+}
+
+input:focus {
+    border-color: #4CAF50;
+    outline: none;
+}
+
+/* Botones */
+input[type="submit"],
+a {
+    display: inline-block;
+    background: linear-gradient(135deg, #4CAF50, #45a049);
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    cursor: pointer;
+    text-align: center;
+    font-size: 1em;
+    font-weight: 600;
+    border-radius: 25px;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.15);
+    transition: background 0.3s, transform 0.2s;
+    text-decoration: none;
+    margin-top: 10px;
+}
+
+input[type="submit"]:hover,
+a:hover {
+    background: linear-gradient(135deg, #45a049, #3e8e41);
+    transform: translateY(-2px);
+}
+
+input[type="submit"]:active,
+a:active {
+    transform: translateY(0);
+}
