@@ -14,7 +14,6 @@ $password = "root";			// Contraseña
 try {
     $pdo = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8mb4", $username, $password);
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    session_start();
 } catch (PDOException $e) {
     die("La conexion con la base de datos $dbname ha fallado: " . $e->getMessage());
 }

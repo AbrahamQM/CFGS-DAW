@@ -66,6 +66,7 @@ CREATE TABLE cuota (
 
 
 -- Insertar datos de ejemplo/iniciales
+-- ***********Usar las credenciales de los usuarios para acceder al sistema***********
 -- Usar la base de datos
 USE comunidad;
 

@@ -44,21 +44,23 @@ function leerViviendasVecino($id, $pdo)
 
 /**
  * Actualiza los datos personales de un vecino (teléfono y correo).
+ * Aparecen actualizados en todas las viviendas asociadas.
  */
-function actualizarVecino($idUsuario, $telefono, $correo, $pdo)
+function actualizarVecino($idVecino, $telefono, $correo, $pdo)
 {
     $stmt = $pdo->prepare("
         UPDATE vecino
         SET telefono = :telefono,
             email = :correo
-        WHERE id_usuario = :id
+        WHERE id = :id
     ");
-    return $stmt->execute([
+    $stmt->execute([
         ':telefono' => $telefono,
         ':correo' => $correo,
-        ':id' => $idUsuario
+        ':id' => $idVecino
     ]);
 }
+
 
 /**
  * Actualiza la contraseña de un usuario.
@@ -87,6 +89,7 @@ function leerViviendasConVecinos($pdo)
         SELECT
             v.id           AS id_vecino,
             v.nombre,
+            COALESCE (v.apellidos, '---') AS apellidos,
             v.dni,
             v.telefono,
             v.email,
@@ -123,7 +126,8 @@ function leerViviendasConVecinos($pdo)
  * cuotas_impagadas y fecha_ultima_cuota, manteniéndolos consistentes.
  */
 
-function actualizarCuotasPorViviendaId($idVivienda, $fechaUltima, $pdo) {
+function actualizarCuotasPorViviendaId($idVivienda, $fechaUltima, $pdo)
+{
     // Resolver id_vecino y fecha_alta asociada a esa vivienda
     $stmt = $pdo->prepare("
         SELECT v.id AS id_vecino, v.fecha_alta
@@ -138,14 +142,14 @@ function actualizarCuotasPorViviendaId($idVivienda, $fechaUltima, $pdo) {
         return false;
     }
 
-    $idVecino  = (int)$row['id_vecino'];
+    $idVecino = (int) $row['id_vecino'];
     $fechaAlta = $row['fecha_alta'];
 
     // Calcular cuotas pagadas = meses entre alta y fechaUltima
     $pagadas = 0;
     if (!empty($fechaUltima)) {
         $inicio = new DateTime($fechaAlta);
-        $fin    = new DateTime($fechaUltima);
+        $fin = new DateTime($fechaUltima);
         if ($fin >= $inicio) {
             $diff = $inicio->diff($fin);
             $pagadas = $diff->y * 12 + $diff->m + 1; // +1 para contar el mes de la última cuota
@@ -173,10 +177,10 @@ function actualizarCuotasPorViviendaId($idVivienda, $fechaUltima, $pdo) {
             WHERE id = :idCuota
         ");
         return $stmt->execute([
-            ':pagadas'     => $pagadas,
-            ':pendientes'  => $pendientes,
+            ':pagadas' => $pagadas,
+            ':pendientes' => $pendientes,
             ':fechaUltima' => $fechaUltima,
-            ':idCuota'     => $existe['id']
+            ':idCuota' => $existe['id']
         ]);
     } else {
         $stmt = $pdo->prepare("
@@ -184,10 +188,10 @@ function actualizarCuotasPorViviendaId($idVivienda, $fechaUltima, $pdo) {
             VALUES (:idVivienda, :idVecino, :pagadas, :pendientes, :fechaUltima)
         ");
         return $stmt->execute([
-            ':idVivienda'  => $idVivienda,
-            ':idVecino'    => $idVecino,
-            ':pagadas'     => $pagadas,
-            ':pendientes'  => $pendientes,
+            ':idVivienda' => $idVivienda,
+            ':idVecino' => $idVecino,
+            ':pagadas' => $pagadas,
+            ':pendientes' => $pendientes,
             ':fechaUltima' => $fechaUltima
         ]);
     }
@@ -203,7 +207,8 @@ function actualizarCuotasPorViviendaId($idVivienda, $fechaUltima, $pdo) {
  * $fechaUltima Fecha de última cuota pagada en formato 'Y-m-d' o null
  * devuelve Número de cuotas pendientes o 0
  */
-function calcularCuotasPendientes($fechaAlta, $fechaUltima = null) {
+function calcularCuotasPendientes($fechaAlta, $fechaUltima = null)
+{
     // Determinar punto de partida: si no hay cuotas pagadas, usamos fecha de alta
     $fechaInicioTexto = (empty($fechaUltima) || $fechaUltima === '---') ? $fechaAlta : $fechaUltima;
 
@@ -227,76 +232,178 @@ function calcularCuotasPendientes($fechaAlta, $fechaUltima = null) {
 }
 
 
-// /**
-//  * Añade un nuevo vecino al fichero
-//  */
-// function altaVecino($datos) {
-//     $nuevaLinea = implode("|", $datos) . "\n";
-//     file_put_contents(FICHERO_VECINOS, $nuevaLinea, FILE_APPEND);
-// }
 
-// /**
-//  * Calcula el número de cuotas pendientes desde la fecha de alta o última cuota
-//  * hasta el primer día del mes en curso (excluyendo el mes actual).
-//  * $fechaAlta Fecha de alta en formato 'Y-m-d'
-//  * $fechaUltimaTexto Fecha de última cuota pagada en formato 'Y-m-d' o '---'
-//  * Devuelve Número de cuotas pendientes
-//  */
-// function calcularCuotasPendientes($fechaAlta, $fechaUltimaTexto) {
-//     // Determinar punto de partida: si no hay cuotas pagadas, usamos fecha de alta
-//     $fechaInicioTexto = ($fechaUltimaTexto === "---") ? $fechaAlta : $fechaUltimaTexto;
+/**
+ * Añade un nuevo vecino
+ * recibe todos los datos del formulario en el array $datos
+ * pdo: conexión activa a la base de datos
+ * Devuelve mensaje de error si hay problema o null si se ha dado de alta correctamente.
+ * valida los requisitos de la tarea (único presidente, vivienda única, campos obligatorios, etc.)
+ */
+function altaVecino($datos, $pdo)
+{
+    // Validación: solo puede existir un presidente
+    if ($datos['rol'] === 'presidente' && existePresidente($pdo)) {
+        return "❌ Error: Ya existe un presidente en la comunidad.";
+    }
 
-//     // Intentamos crear el objeto DateTime
-//     $fechaInicio = DateTime::createFromFormat('Y-m-d', $fechaInicioTexto);
-//     if (!$fechaInicio) {
-//         return 0; // Si el formato es inválido, devolvemos 0 por seguridad
-//     }
+    // Validación: vivienda ya asignada
+    if (viviendaExistente($pdo, $datos['piso'], $datos['bloque'], $datos['letra'])) {
+        return "❌ Error: La vivienda ya está asignada a otro vecino.";
+    }
 
-//     // Normalizamos al primer día del mes
-//     $fechaInicio->modify('first day of this month');
+    // Buscar usuario existente
+    $stmt = $pdo->prepare("SELECT id FROM usuario WHERE usuario = :usuario AND rol IN ('vecino','presidente')");
+    $stmt->execute([':usuario' => $datos['usuario']]);
+    $row = $stmt->fetch(PDO::FETCH_ASSOC);
+    $idUsuario = $row['id'] ?? null;
 
-//     // Calculamos hasta el primer día del mes actual (excluyendo el mes en curso)
-//     $hoy = new DateTime();
-//     $hoy->modify('first day of this month');
+    if (!$idUsuario) {
+        // Validaciones básicas
+        if ($datos['nombre'] === '' || $datos['apellidos'] === '' || $datos['dni'] === '' || $datos['password'] === '') {
+            return "❌ Error: Nombre, apellidos, DNI y contraseña son obligatorios.";
+        }
 
-//     $intervalo = $fechaInicio->diff($hoy);
-//     $intervalo = ($intervalo->y * 12) + $intervalo->m;
-//     return $intervalo > 0 ? $intervalo -1 : 0; // Restamos 1 para excluir el mes actual
-// }
+        // Crear usuario
+        $stmt = $pdo->prepare("INSERT INTO usuario (usuario, pass, rol) VALUES (:usuario, :pass, :rol)");
+        $stmt->execute([
+            ':usuario' => $datos['usuario'],
+            ':pass' => $datos['password'],
+            ':rol' => $datos['rol']
+        ]);
+        $idUsuario = $pdo->lastInsertId();
+    } else {// Usuario ya existe → actualizar rol si procede
+        $stmt = $pdo->prepare("UPDATE usuario SET rol = :rol WHERE id = :id");
+        $stmt->execute([':rol' => $datos['rol'], ':id' => $idUsuario]);
+    }
 
-// /**
-//  * Actualiza los datos de una vivienda concreta identificada por $dni y $vivienda.
-//  *
-//  * $dni: DNI del vecino
-//  * $vivienda: vivienda actual (clave única junto con el DNI)
-//  * $nuevoTelefono: nuevo teléfono
-//  * $nuevoCorreo: nuevo correo
-//  * $nuevaVivienda: nueva vivienda (si se quiere modificar)
-//  */
-// function actualizarDatosUnidad($dni, $vivienda, $nuevoTelefono, $nuevoCorreo, $nuevaVivienda) {
-//     $vecinos = leerVecinos();
-//     $encontrado = false;
+    // Comprobación de vecino existente
+    $stmt = $pdo->prepare("SELECT id FROM vecino WHERE id_usuario = :id LIMIT 1");
+    $stmt->execute([':id' => $idUsuario]);
+    $yaEsVecino = $stmt->fetch(PDO::FETCH_ASSOC);
 
-//     foreach ($vecinos as &$v) {
-//         if ($v[1] === $dni && $v[4] === $vivienda) {
-//             $v[2] = $nuevoTelefono;
-//             $v[3] = $nuevoCorreo;
-//             $v[4] = $nuevaVivienda;
-//             $encontrado = true;
-//             break;
-//         }
-//     }
-//     unset($v);
+    if (!$yaEsVecino) {
+        // Insertar en vecino
+        $stmt = $pdo->prepare("INSERT INTO vecino (id_usuario, nombre, apellidos, dni, telefono, email, fecha_alta)
+                               VALUES (:id_usuario, :nombre, :apellidos, :dni, :telefono, :email, :fecha_alta)");
+        $stmt->execute([
+            ':id_usuario' => $idUsuario,
+            ':nombre' => $datos['nombre'],
+            ':apellidos' => $datos['apellidos'],
+            ':dni' => $datos['dni'],
+            ':telefono' => $datos['telefono'],
+            ':email' => $datos['correo'],
+            ':fecha_alta' => $datos['fechaAlta'] instanceof DateTime
+                ? $datos['fechaAlta']->format('Y-m-d')
+                : $datos['fechaAlta']
+        ]);
+        $idVecino = $pdo->lastInsertId();
+    } else {
+        // Ya existe vecino → usar su id
+        $idVecino = $yaEsVecino['id'];
+    }
 
-//     if ($encontrado) {
-//         $lineas = [];
-//         $lineas[] = "nombre|dni|telefono|correo|vivienda|fechaAlta|cuotasPagadas|cuotasPendientes|fechaUltima|rol|password";
-//         foreach ($vecinos as $v) {
-//             if ($v[0] === "nombre" && $v[1] === "dni") continue;
-//             $lineas[] = implode("|", $v);
-//         }
-//         file_put_contents(FICHERO_VECINOS, implode("\n", $lineas) . "\n");
-//     }
+    // Insertar en vivienda
+    $stmt = $pdo->prepare("INSERT INTO vivienda (id_vecino, piso, bloque, letra)
+                           VALUES (:id_vecino, :piso, :bloque, :letra)");
+    $stmt->execute([
+        ':id_vecino' => $idVecino,
+        ':piso' => $datos['piso'],
+        ':bloque' => $datos['bloque'],
+        ':letra' => $datos['letra']
+    ]);
+    $idVivienda = $pdo->lastInsertId();
 
-//     return $encontrado;
-// }
+    // Crear cuotas iniciales si hay fecha última
+    if (!empty($datos['fechaUltima'])) {
+        $fechaUltima = $datos['fechaUltima'] instanceof DateTime ? $datos['fechaUltima']->format('Y-m-d') : $datos['fechaUltima'];
+        actualizarCuotasPorViviendaId($idVivienda, $fechaUltima, $pdo);
+    }
+
+    return null; // correcto/sin errores
+}
+
+
+/**
+ * Busca si ya existe un presidente en la comunidad.
+ * Devuelve true si existe, false si no.
+ */
+function existePresidente($pdo)
+{
+    $stmt = $pdo->prepare("SELECT id FROM usuario WHERE rol = 'presidente' LIMIT 1");
+    $stmt->execute();
+    return $stmt->fetch(PDO::FETCH_ASSOC) !== false;
+}
+
+
+/**
+ * Comprueba si ya existe una vivienda con la misma combinación de piso, bloque y letra.
+ * Devuelve true si existe, false si no.
+ */
+function viviendaExistente($pdo, $piso, $bloque, $letra)
+{
+    $stmt = $pdo->prepare("
+        SELECT id 
+        FROM vivienda 
+        WHERE piso = :piso AND bloque = :bloque AND letra = :letra
+        LIMIT 1
+    ");
+    $stmt->execute([
+        ':piso' => $piso,
+        ':bloque' => $bloque,
+        ':letra' => $letra
+    ]);
+    return $stmt->fetch(PDO::FETCH_ASSOC) !== false;
+}
+
+
+
+/**
+ * Elimina una vivienda.
+ * Si el vecino solo tiene esa vivienda, elimina también al vecino (y opcionalmente al usuario).
+ * Devuelve null si todo va bien, o un mensaje de error si falla.
+ */
+function bajaVecinoOVivienda($idVivienda, $idVecino, $pdo)
+{
+    try {
+        $pdo->beginTransaction();
+
+        // Contar cuántas viviendas tiene este vecino
+        $stmt = $pdo->prepare("SELECT COUNT(*) FROM vivienda WHERE id_vecino = :idVecino");
+        $stmt->execute([':idVecino' => $idVecino]);
+        $numViviendas = (int)$stmt->fetchColumn();
+
+        // Borrar cuotas asociadas a la vivienda
+        $stmt = $pdo->prepare("DELETE FROM cuota WHERE id_vivienda = :idVivienda");
+        $stmt->execute([':idVivienda' => $idVivienda]);
+
+        // Borrar la vivienda
+        $stmt = $pdo->prepare("DELETE FROM vivienda WHERE id = :idVivienda");
+        $stmt->execute([':idVivienda' => $idVivienda]);
+
+        if ($numViviendas <= 1) {
+            // Si era la única vivienda → borrar también al vecino
+            $stmt = $pdo->prepare("DELETE FROM vecino WHERE id = :idVecino");
+            $stmt->execute([':idVecino' => $idVecino]);
+
+            //borrar usuario si ya no tiene un registro de vecino
+            $stmt = $pdo->prepare("SELECT COUNT(*) FROM vecino WHERE id_usuario = (
+                                      SELECT id_usuario FROM vecino WHERE id = :idVecino LIMIT 1
+                                   )");
+            $stmt->execute([':idVecino' => $idVecino]);
+            $numVecinos = (int)$stmt->fetchColumn();
+
+            if ($numVecinos == 0) {
+                $stmt = $pdo->prepare("DELETE FROM usuario
+                                       WHERE id = (SELECT id_usuario FROM vecino WHERE id = :idVecino LIMIT 1)");
+                $stmt->execute([':idVecino' => $idVecino]);
+            }
+        }
+
+        $pdo->commit();
+        return null; //  correcto
+    } catch (Exception $e) {
+        $pdo->rollBack();
+        return "Error al eliminar: " . $e->getMessage();
+    }
+}
