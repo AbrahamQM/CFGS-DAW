@@ -9,7 +9,7 @@
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
-
+session_start();
 
 // Incluimos la conexión a la base de datos y funciones
 require_once __DIR__ . '/bbdd/conexion_bbdd.php';
