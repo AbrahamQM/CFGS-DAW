@@ -6,17 +6,25 @@
  */
 session_start(); // Activamos sesión para acceder a las preferencias
 
-// --- Procesamiento del botón "Borrar" ---
+// Post del botón "Borrar"
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['borrar'])) {
-    unset($_SESSION['preferencias']); // Elimina los datos preferencias de la sesion
-    $_SESSION['mensaje_borrado'] = "Preferencias borradas";
+    if(!isset($_SESSION['preferencias'])) { //si no están seteadas las preferencias mensaje de error
+        $_SESSION['mensaje_borrado'] = "Debes fijar primero las preferencias";
+    }else{ //si lo están, las borramos y mensaje de éxito
+        unset($_SESSION['preferencias']); // Elimina los datos preferencias de la sesion
+        $_SESSION['mensaje_borrado'] = "Preferencias borradas";
+    }
+
     header("Location: mostrar.php");
     exit;
 }
 
-// --- Preparar valores a mostrar ---
-$idioma = $_SESSION['preferencias']['idioma'] ?? 'No establecido';
-$perfil = $_SESSION['preferencias']['perfil'] ?? 'No establecido';
+// constante para valor no establecido
+define('NO_ESTABLECIDO', 'No establecido');
+// Preparar valores a mostrar
+$idioma = $_SESSION['preferencias']['idioma'] ?? NO_ESTABLECIDO;
+$perfil = $_SESSION['preferencias']['perfil'] ?? NO_ESTABLECIDO;
+$zona = $_SESSION['preferencias']['zona_horaria'] ?? NO_ESTABLECIDO;
 $zona = $_SESSION['preferencias']['zona_horaria'] ?? 'No establecido';
 
 ?>
