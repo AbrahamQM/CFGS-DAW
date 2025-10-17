@@ -1,0 +1,96 @@
+/* Estilo general del cuerpo */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f2f4f8;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+/* Contenedor principal */
+main {
+  background-color: #ffffff;
+  padding: 30px 40px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  width: 320px;
+}
+
+/* Título */
+h2 {
+  text-align: center;
+  color: #333333;
+  margin-bottom: 25px;
+}
+
+/* Etiquetas */
+label {
+  font-weight: bold;
+  color: #444444;
+  display: block;
+  margin-bottom: 6px;
+}
+
+/* Selectores */
+select {
+  width: 100%;
+  padding: 8px;
+  border-radius: 8px;
+  border: 1px solid #cccccc;
+  background-color: #f9f9f9;
+  margin-bottom: 20px;
+  font-size: 14px;
+}
+
+/* Botón de envío */
+input[type="submit"] {
+  width: 100%;
+  padding: 10px;
+  background-color: #007acc;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  font-size: 15px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+input[type="submit"]:hover {
+  background-color: #005fa3;
+}
+
+/* Enlace */
+a {
+  display: block;
+  text-align: center;
+  margin-top: 15px;
+  color: #007acc;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+
+/* Botón rojo para borrar preferencias */
+input.borrar {
+  background-color: #cc0000;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+input.borrar:hover {
+  background-color: #a30000;
+}
