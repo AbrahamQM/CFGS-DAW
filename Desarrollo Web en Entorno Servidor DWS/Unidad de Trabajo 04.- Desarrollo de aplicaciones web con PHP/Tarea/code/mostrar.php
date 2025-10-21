@@ -25,7 +25,6 @@ define('NO_ESTABLECIDO', 'No establecido');
 $idioma = $_SESSION['preferencias']['idioma'] ?? NO_ESTABLECIDO;
 $perfil = $_SESSION['preferencias']['perfil'] ?? NO_ESTABLECIDO;
 $zona = $_SESSION['preferencias']['zona_horaria'] ?? NO_ESTABLECIDO;
-$zona = $_SESSION['preferencias']['zona_horaria'] ?? 'No establecido';
 
 ?>
 
