@@ -1,0 +1,21 @@
+{
+    "name": "abraham/code",
+    "description": "Jugadores de Futbol-Unidad 5:Programación orientada a objetos en PHP-DSW",
+    "version": "1.1.0",
+    "require": {
+        "league/plates": "^3.6",
+        "milon/barcode": "^12.0",
+        "fakerphp/faker": "^1.24"
+    },
+    "autoload": {
+        "psr-4": {
+            "Abraham\\Code\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Abraham Quintana",
+            "email": "abrahamqm87@gmail.com"
+        }
+    ]
+}
