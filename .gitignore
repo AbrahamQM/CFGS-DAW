@@ -24,7 +24,7 @@
 
 #Para las tareas de DSW que usan librerias de php
 # Dependencias de Composer
-/vendor/
+**/vendor/
 
 # Archivos del sistema
 .DS_Store
