@@ -16,14 +16,14 @@ header {
 
 /* Contenedor principal centrado */
 main {
-  max-width: 600px;
-  margin: 2rem auto;
+  width: 85%;                /* ocupa el 80% del ancho de la ventana */
+  margin: 2rem auto;         /* centrado horizontal */
   padding: 1rem 2rem;
   background: #fff;
   border-radius: 6px;
   box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-  text-align: left;
 }
+
 
 /* Títulos */
 h1, h2 {
@@ -33,16 +33,20 @@ h1, h2 {
 
 /* Tablas */
 table {
-  border-collapse: collapse;
-  width: 100%;
+    margin: 0 auto;           /* centra la tabla horizontalmente */
+    border-collapse: collapse;
+    max-width: 100%;          /* evita que se salga del contenedor */
 }
+
 th, td {
-  border: 1px solid #ccc;
-  padding: 0.5rem;
+    padding: 6px 10px;
+    text-align: center;
 }
-th {
-  background: #003366;
-  color: #fff;
+
+/* Si quieres que la tabla pueda desplazarse en pantallas pequeñas */
+.tabla-contenedor {
+    overflow-x: auto;
+    width: 100%;
 }
 
 /* Formularios */
@@ -74,3 +78,4 @@ button, a {
 button:hover, a:hover {
   background: #0055aa;
 }
+

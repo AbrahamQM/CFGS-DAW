@@ -1,4 +1,5 @@
 <?php
+//Clase conexion encargada de establecer devolver o cerrar la conexión en caso de ser necesario.
 namespace Abraham\Code;
 
 use PDO;

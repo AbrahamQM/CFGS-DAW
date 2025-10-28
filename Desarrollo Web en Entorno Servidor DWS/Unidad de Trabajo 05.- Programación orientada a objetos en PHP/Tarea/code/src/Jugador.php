@@ -1,4 +1,5 @@
 <?php
+// Clase Jugador con el constructor, método para insertar y obtenerTodos 
 namespace Abraham\Code;
 
 use PDO;
