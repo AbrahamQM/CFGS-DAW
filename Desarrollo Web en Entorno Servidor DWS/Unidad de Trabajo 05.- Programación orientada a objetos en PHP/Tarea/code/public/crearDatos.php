@@ -20,8 +20,10 @@ try {
             $faker->unique()->ean13()
         );
         $jugador->insertar();
-        echo "Insertado: {$faker->name}<br>";
     }
+    
 } catch (Exception $e) {
     echo "Error al crear datos: " . $e->getMessage();
 }
+//redirigimos a la página de jugadores
+header('Location: jugadores.php');
