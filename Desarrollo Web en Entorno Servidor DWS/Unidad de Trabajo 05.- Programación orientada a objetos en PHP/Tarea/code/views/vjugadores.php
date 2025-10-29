@@ -1,5 +1,5 @@
 <!-- vista de el listado de jugadores -->
-<!-- Importamos para mostrar el código de barras -->
+<!-- Importamos Milon Barcode para mostrar el código de barras -->
 <?php
 use Milon\Barcode\DNS1D;
 ?>
@@ -37,12 +37,12 @@ use Milon\Barcode\DNS1D;
                         <td>
                             <?php
                             try {
-                                $dns1d = new DNS1D();
+                                $dns1d = new DNS1D(); //es necesario instanciarlo para que funcione
                                 $dns1d->setStorPath(__DIR__ . '/../../cache'); // ruta a la carpeta cache
                                 $barcodeImg = $dns1d->getBarcodePNG($j['barcode'], 'EAN13');
                                 echo '<img src="data:image/png;base64,' . $barcodeImg . '" alt="barcode" />';
                             } catch (Throwable $e) {
-                                echo htmlspecialchars($j['barcode']); // fallback: mostrar el número
+                                echo htmlspecialchars($j['barcode']); // fallback: mostrar el número si no se puede generar la imagen
                             }
                             ?>
                             <br>

@@ -15,6 +15,7 @@ header {
 }
 
 /* Contenedor principal centrado */
+/* esta parte fue necesaria para que la tabla se viera bien sin salirse del main y con apariencia decente */
 main {
   width: 85%;                /* ocupa el 80% del ancho de la ventana */
   margin: 2rem auto;         /* centrado horizontal */
@@ -43,13 +44,13 @@ th, td {
     text-align: center;
 }
 
-/* Si quieres que la tabla pueda desplazarse en pantallas pequeñas */
+
 .tabla-contenedor {
     overflow-x: auto;
     width: 100%;
 }
 
-/* Formularios */
+/* Formularios y botones de los mismos*/
 form {
   margin-top: 1rem;
 }

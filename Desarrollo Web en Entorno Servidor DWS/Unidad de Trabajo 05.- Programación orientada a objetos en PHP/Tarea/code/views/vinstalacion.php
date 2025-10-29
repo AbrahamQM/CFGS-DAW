@@ -1,4 +1,7 @@
-<!-- vista de la página para crear/insertar datos de ejemplo -->
+<!--
+    vista de la página para crear/insertar datos de ejemplo
+    solo necesita un botón para llamar a crearDatos y el título de la página
+ -->
 
 <?php $this->layout('plantillas/plantilla1', ['titulo' => $titulo]) ?>
 

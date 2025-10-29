@@ -1,6 +1,8 @@
 <!--
     Controlador para la inserción de un nuevo jugador
     desde la vista vcrear con el formulario que se carga desde fcrear
+    valida los datos mínimos y comprueba unicidad de dorsal y barcode
+    si hay errores los muestra, si no crea el jugador y redirige al listado
 -->
 
 <?php
@@ -16,13 +18,16 @@ try {
     $telefono = trim($_POST['telefono'] ?? '');
     $nacionalidad = trim($_POST['nacionalidad'] ?? '');
     $fechaNacimiento = $_POST['fecha_nacimiento'] ?? null;
+    if (empty($fechaNacimiento)) {
+        $fechaNacimiento = null; // si viene vacío, lo guardamos como NULL
+    }
     $dorsal = $_POST['dorsal'] ?? null;
     $posicion = $_POST['posicion'] ?? null;
     $barcode = trim($_POST['barcode'] ?? '');
 
     // Validaciones mínimas
     $errores = [];
-    if ($nombre === '' || $apellidos === '' || $nacionalidad === '' || $barcode === '') {
+    if ($nombre === '' || $apellidos === '' || $nacionalidad === '') {
         $errores[] = "Faltan campos obligatorios.";
     }
 
@@ -57,13 +62,13 @@ try {
     }
 
     // Crear objeto Jugador y guardarlo
-    $jugador = new Jugador($nombre, $apellidos, $telefono, $nacionalidad, $fechaNacimiento, $dorsal, $posicion, $barcode);
+    $jugador = new Jugador($nombre, $apellidos, $telefono, $nacionalidad, $fechaNacimiento ?? null, $dorsal, $posicion, $barcode);
     $jugador->insertar();
 
     // Redirigir al listado
     header("Location: jugadores.php");
     exit;
-
+//errores
 } catch (Exception $e) {
     echo "<h2>Error al crear jugador</h2>";
     echo "<p>" . htmlspecialchars($e->getMessage()) . "</p>";

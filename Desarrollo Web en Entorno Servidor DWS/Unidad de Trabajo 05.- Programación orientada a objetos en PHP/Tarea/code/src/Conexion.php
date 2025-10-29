@@ -1,5 +1,5 @@
 <?php
-//Clase conexion encargada de establecer devolver o cerrar la conexión en caso de ser necesario.
+//Clase conexion encargada de establecer y devolver conexión .
 namespace Abraham\Code;
 
 use PDO;
@@ -24,7 +24,4 @@ class Conexion {
         return self::$conexion;
     }
 
-    public static function cerrar() {
-        self::$conexion = null;
-    }
 }
