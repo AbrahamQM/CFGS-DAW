@@ -1,12 +1,14 @@
-<!-- vista del formulario para crear un jugador introduciendo los datos.
-     Incluye los campos necesarios y permite generar un código de barras único.
-     Si se llega desde generarCode.php, el campo barcode se precarga automáticamente.
+<!--
+    vista del formulario para crear un jugador introduciendo los datos.
+    Incluye los campos necesarios y permite generar un código de barras único.
+    Si se llega desde generarCode.php, el campo barcode se precarga automáticamente.
 -->
 
 <?php $this->layout('plantillas/plantilla1', ['titulo' => 'Crear Jugador']) ?>
 
 <?php $this->start('contenido') ?>
     <h2>Crear Jugador</h2>
+    <h3>Ojo: No olvides crear el código de barras pulsando el boton antes de rellenar el formulario o se perderán los datos al recargarse la página!.</h3>
 
     <form action="crearJugador.php" method="post">
         <label>Nombre:</label>
@@ -37,9 +39,8 @@
             <option>Delantero</option>
         </select><br>
 
-        <!-- Campo de código de barras: se rellena automáticamente si llega por GET -->
-        <label>Código de Barras:</label>
-        <input type="text" name="barcode" readonly value="<?= htmlspecialchars($barcode ?? '') ?>">
+        <!-- Campo de código de barras: se rellena automáticamente si llega poral pulsar el botón e incluye el readonly que pide el enunciado -->
+        <input type="text" name="barcode" readonly value="<?= htmlspecialchars($barcode ?? '') ?>" required>
         <a href="generarCode.php">Generar Barcode</a><br><br>
 
         <!-- Botones de acción: crear, limpiar y volver al listado -->

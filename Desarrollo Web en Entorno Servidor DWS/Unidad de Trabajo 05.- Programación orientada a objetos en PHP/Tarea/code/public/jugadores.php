@@ -1,3 +1,8 @@
+<!--
+    página para mostrar la lista de jugadores
+    obtiene los jugadores de la base de datos y los pasa a la vista vjugadores.php
+    tambien maneja errores si la consulta falla
+ -->
 <?php
 require __DIR__ . '/../vendor/autoload.php';
 
