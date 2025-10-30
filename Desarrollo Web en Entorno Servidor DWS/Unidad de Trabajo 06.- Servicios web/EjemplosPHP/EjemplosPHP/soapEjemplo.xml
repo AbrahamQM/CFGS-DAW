@@ -1,0 +1,33 @@
+<!-- Ejemplo SOAP
+   Estructura de un archivo SOAP:
+
+	El mensaje SOAP siempre comienza con el elemento raíz <Envelope>
+	<Envelope>
+		<Header>
+			El encabezado es opcional. Aquí podrían ir credenciales, tokens, etc.
+		</Header>
+		<Body>
+			El cuerpo contiene los datos de la solicitud
+		</Body>
+		<Fault>
+			El fault es opcional. Aparece solo cuando ocurre un error. Reemplaza el contenido normal del <Body>.
+		</Fault>
+	</Envelope>
+	
+	Este ejemplo: en Body hay un elemento potencia, con base y exponente. Se solicita al endpoint potencia con estos dos parámetros.
+-->
+
+<?xml version="1.0" encoding="UTF-8"?>
+<soap:Envelope
+    xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+
+    <soap:Header/>
+    <soap:Body>
+		<nsl:potencia>
+			<base>2</base>
+			<exponente>3</exponente>
+		</nsl:potencia>
+    </soap:Body>
+</soap:Envelope>
