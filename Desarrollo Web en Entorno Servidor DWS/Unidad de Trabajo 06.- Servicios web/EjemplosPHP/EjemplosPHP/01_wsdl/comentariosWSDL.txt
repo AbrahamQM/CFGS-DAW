@@ -1,0 +1,9 @@
+<!--
+	Definimos nuestro WSDL que es el contrato entre el cliente y el servidor del Servicio Web
+	El fichero tiene varias secciones:
+	** Tipos: define los datos que se envía y reciben (entradas/salidas) : en este ejemplo -> nombre y saludo.
+	** Mensajes: define los mensajes de solicitud y respuesta de cada uno de los tipos anteriores.
+	** Operaciones: describe los métodos (operaciones) que expone el servicio : en este ejemplo -> holaMundo.
+	** Binding: especifica el cómo se codifican los mensajes SOAP y el protocolo HTTP.
+	** Servicio: indica dónde se encuentra físicamente el servicio (es decir, la URL del servidor PHP).
+-->

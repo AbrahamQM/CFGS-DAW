@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/">
+	<SOAP-ENV:Body>
+		<SOAP-ENV:Fault>
+			<faultcode>SOAP-ENV:Client</faultcode>
+			<faultstring>El usuario con ID 1111 no existe.</faultstring>
+			<faultactor>http://localhost/02_soap/userService</faultactor>
+			<detail>
+				<item>
+					<key>errorCode</key>
+					<value>USER_NOT_FOUND</value>
+				</item>
+			</detail>
+		</SOAP-ENV:Fault>
+	</SOAP-ENV:Body>
+</SOAP-ENV:Envelope>

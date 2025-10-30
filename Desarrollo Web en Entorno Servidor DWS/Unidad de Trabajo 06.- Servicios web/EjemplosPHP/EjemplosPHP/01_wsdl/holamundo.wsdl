@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions
+    name="HolaMundoService"
+    targetNamespace="http://localhost/01_wsdl/holamundo"
+    xmlns:tns="http://localhost/01_wsdl/holamundo"
+    xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+    xmlns="http://schemas.xmlsoap.org/wsdl/">
+
+    <!-- Mensajes -->
+    <wsdl:message name="holaMundoRequest">
+        <wsdl:part name="nombre" type="xsd:string"/>
+    </wsdl:message>
+
+    <wsdl:message name="holaMundoResponse">
+        <wsdl:part name="return" type="xsd:string"/>
+    </wsdl:message>
+
+    <!-- Operación -->
+    <wsdl:portType name="HolaMundoPortType">
+        <wsdl:operation name="holaMundo">
+            <wsdl:input message="tns:holaMundoRequest"/>
+            <wsdl:output message="tns:holaMundoResponse"/>
+        </wsdl:operation>
+    </wsdl:portType>
+
+    <!-- Binding -->
+    <wsdl:binding name="HolaMundoBinding" type="tns:HolaMundoPortType">
+        <soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="holaMundo">
+            <soap:operation soapAction="urn:holamundo#holaMundo"/>
+            <wsdl:input>
+                <soap:body use="encoded" namespace="urn:holamundo"
+                    encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="encoded" namespace="urn:holamundo"
+                    encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+
+    <!-- Servicio -->
+    <wsdl:service name="HolaMundoService">
+        <wsdl:port name="HolaMundoPort" binding="tns:HolaMundoBinding">
+            <soap:address location="http://localhost/01_wsdl/server.php"/>
+        </wsdl:port>
+    </wsdl:service>
+
+</definitions>

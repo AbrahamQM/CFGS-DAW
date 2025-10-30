@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ns1="http://localhost/02_wsdl/userservice">
+	<SOAP-ENV:Body>
+		<ns1:getUserInfoResponse>
+			<userInfo>
+				<name>Antonio González</name>
+				<email>agonzalez@example.com</email>
+				<age>60</age>
+			</userInfo>
+		</ns1:getUserInfoResponse>
+	</SOAP-ENV:Body>
+</SOAP-ENV:Envelope>
