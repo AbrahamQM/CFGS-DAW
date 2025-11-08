@@ -1,0 +1,61 @@
+<?xml version="1.0"?>
+<definitions xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://localhost/code/public/servicio.php" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap-enc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" name="Abraham.Code.Operaciones" targetNamespace="http://localhost/code/public/servicio.php">
+  <types>
+    <xsd:schema targetNamespace="http://localhost/code/public/servicio.php">
+      <xsd:import namespace="http://schemas.xmlsoap.org/soap/encoding/"/>
+    </xsd:schema>
+  </types>
+  <portType name="Abraham.Code.OperacionesPort">
+    <operation name="getPVP">
+      <documentation>Esta funci&#xF3;n recbe como par&#xE1;metro el c&#xF3;digo de un producto</documentation>
+      <input message="tns:getPVPIn"/>
+      <output message="tns:getPVPOut"/>
+    </operation>
+    <operation name="getStock">
+      <documentation>Esta funci&#xF3;n recibe dos par&#xE1;metros:
+
+el c&#xF3;digo de un producto y el c&#xF3;digo de una tienda.</documentation>
+      <input message="tns:getStockIn"/>
+      <output message="tns:getStockOut"/>
+    </operation>
+  </portType>
+  <binding name="Abraham.Code.OperacionesBinding" type="tns:Abraham.Code.OperacionesPort">
+    <soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <operation name="getPVP">
+      <soap:operation soapAction="http://localhost/code/public/servicio.php#getPVP"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://localhost/code/public/servicio.php"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://localhost/code/public/servicio.php"/>
+      </output>
+    </operation>
+    <operation name="getStock">
+      <soap:operation soapAction="http://localhost/code/public/servicio.php#getStock"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://localhost/code/public/servicio.php"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://localhost/code/public/servicio.php"/>
+      </output>
+    </operation>
+  </binding>
+  <message name="getPVPIn">
+    <part name="codigoProducto" type="xsd:string"/>
+  </message>
+  <message name="getPVPOut">
+    <part name="return" type="xsd:string"/>
+  </message>
+  <message name="getStockIn">
+    <part name="codigoProducto" type="xsd:string"/>
+    <part name="codigoTienda" type="xsd:string"/>
+  </message>
+  <message name="getStockOut">
+    <part name="return" type="xsd:string"/>
+  </message>
+  <service name="Abraham.Code.OperacionesService">
+    <port name="Abraham.Code.OperacionesPort" binding="tns:Abraham.Code.OperacionesBinding">
+      <soap:address location="http://localhost/code/public/servicio.php"/>
+    </port>
+  </service>
+</definitions>
