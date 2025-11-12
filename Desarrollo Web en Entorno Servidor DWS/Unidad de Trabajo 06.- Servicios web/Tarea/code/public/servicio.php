@@ -1,6 +1,6 @@
 <?php
 
-// Servidor SOAP con WSDL (depende de ut6/code)
+// Servidor SOAP con WSDL (depende de /code/Operaciones.php)
 use Abraham\Code\Operaciones; //carga el fichero operaciones.php
 require __DIR__ . '/../vendor/autoload.php';
 
