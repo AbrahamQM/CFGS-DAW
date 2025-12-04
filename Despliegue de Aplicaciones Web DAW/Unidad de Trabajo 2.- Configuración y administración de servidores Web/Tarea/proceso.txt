@@ -1,0 +1,283 @@
+Tarea UT2 paso a paso en Ubuntu con evidencia y justificación
+Te guiaré para completar los 3 apartados, indicando comandos, archivos a editar, contenido literal y momentos clave para capturas. Usaremos nombres y rutas exactamente como en el enunciado para que tu documentación sea sólida.
+
+Preparación y comprobaciones iniciales
+Estado de Apache:
+
+Código
+systemctl status apache2
+Habilitar módulos necesarios:
+
+Código
+sudo a2enmod rewrite
+sudo a2enmod ssl
+Recargar servicio:
+
+Código
+sudo systemctl reload apache2
+Captura recomendada: estado activo de Apache y confirmación de módulos habilitados.
+
+1. Virtualhost basado en nombre empresa-tarea-daw02.local
+Crear estructura y contenidos
+Crear directorios:
+
+Código
+sudo mkdir -p /var/www/todo-empresa-tarea-daw02/delimitado
+Asignar propietario (para editar sin sudo):
+
+Código
+sudo chown -R $USER:$USER /var/www/todo-empresa-tarea-daw02
+Index público:
+
+Código
+echo "ACCESO NO LIMITADO: Abraham" > /var/www/todo-empresa-tarea-daw02/index.html
+Index restringido:
+
+Código
+echo "ACCESO LIMITADO: Abraham" > /var/www/todo-empresa-tarea-daw02/delimitado/index.html
+Configurar /etc/hosts para resolver nombres locales
+Editar:
+
+Código
+sudo nano /etc/hosts
+Añadir líneas:
+
+Código
+127.0.0.1 empresa-tarea-daw02.local
+127.0.0.1 www.empresa-tarea-daw02.local
+Captura recomendada: archivo /etc/hosts mostrando ambas entradas y hora del sistema.
+
+Crear el VirtualHost HTTP en sites-available
+Archivo del sitio:
+
+Código
+sudo nano /etc/apache2/sites-available/empresa-tarea-daw02.local.conf
+Contenido literal:
+
+Código
+<VirtualHost *:80>
+    ServerName empresa-tarea-daw02.local
+    ServerAlias www.empresa-tarea-daw02.local
+
+    DocumentRoot /var/www/todo-empresa-tarea-daw02
+
+    <Directory /var/www/todo-empresa-tarea-daw02>
+        Options Indexes FollowSymLinks
+        AllowOverride All
+        Require all granted
+    </Directory>
+
+    ErrorLog ${APACHE_LOG_DIR}/empresa-tarea-daw02_error.log
+    CustomLog ${APACHE_LOG_DIR}/empresa-tarea-daw02_access.log combined
+</VirtualHost>
+Habilitar el sitio y recargar Apache
+Habilitar sitio:
+
+Código
+sudo a2ensite empresa-tarea-daw02.local
+Comprobar sintaxis:
+
+Código
+sudo apache2ctl configtest
+Recargar:
+
+Código
+sudo systemctl reload apache2
+Verificar en navegador:
+
+http://empresa-tarea-daw02.local
+
+http://www.empresa-tarea-daw02.local
+
+Capturas recomendadas:
+
+Salida de a2ensite y “Syntax OK”.
+
+Listado de symlinks:
+
+Código
+ls -l /etc/apache2/sites-enabled/
+Página “ACCESO NO LIMITADO” en navegador.
+
+2. Autenticación Basic para el subdirectorio delimitado
+Crear usuario admin y archivo de contraseñas
+Comando (crea el fichero si no existe):
+
+Código
+sudo htpasswd -c /etc/apache2/web.htpasswd admin
+Captura recomendada: ejecución del comando y confirmación de contraseña.
+
+Configurar restricción con .htaccess
+Archivo .htaccess:
+
+Código
+nano /var/www/todo-empresa-tarea-daw02/delimitado/.htaccess
+Contenido literal:
+
+Código
+AuthType Basic
+AuthName "Acceso restringido al personal de la empresa"
+AuthUserFile /etc/apache2/web.htpasswd
+Require user admin
+Asegurar AllowOverride All (ya puesto en el VirtualHost):
+
+Si lo moviste o cambiaste la ruta, verifica que el bloque Directory tiene AllowOverride All.
+
+Recargar Apache:
+
+Código
+sudo systemctl reload apache2
+Verificación en navegador:
+
+http://empresa-tarea-daw02.local/delimitado
+
+Debe pedir credenciales; usa admin y tu contraseña.
+
+Capturas recomendadas:
+
+Contenido del .htaccess.
+
+Prompt de autenticación del navegador.
+
+Página “ACCESO LIMITADO” tras iniciar sesión.
+
+Extracto de logs:
+
+Código
+sudo tail -n 50 /var/log/apache2/empresa-tarea-daw02_access.log
+3. Habilitar HTTPS en el virtualhost
+Puedes usar el certificado “snakeoil” de Ubuntu o generar uno autofirmado. Para la tarea en local, ambos valen.
+
+Opción rápida: usar snakeoil
+Confirmar mod_ssl habilitado:
+
+Código
+sudo a2enmod ssl
+Crear sitio SSL:
+
+Código
+sudo nano /etc/apache2/sites-available/empresa-tarea-daw02-ssl.conf
+Contenido literal con snakeoil:
+
+Código
+<IfModule mod_ssl.c>
+<VirtualHost *:443>
+    ServerName empresa-tarea-daw02.local
+    ServerAlias www.empresa-tarea-daw02.local
+
+    DocumentRoot /var/www/todo-empresa-tarea-daw02
+
+    <Directory /var/www/todo-empresa-tarea-daw02>
+        Options Indexes FollowSymLinks
+        AllowOverride All
+        Require all granted
+    </Directory>
+
+    SSLEngine on
+    SSLCertificateFile /etc/ssl/certs/ssl-cert-snakeoil.pem
+    SSLCertificateKeyFile /etc/ssl/private/ssl-cert-snakeoil.key
+
+    ErrorLog ${APACHE_LOG_DIR}/empresa-tarea-daw02_ssl_error.log
+    CustomLog ${APACHE_LOG_DIR}/empresa-tarea-daw02_ssl_access.log combined
+</VirtualHost>
+</IfModule>
+Habilitar el sitio SSL y recargar:
+
+Código
+sudo a2ensite empresa-tarea-daw02-ssl
+sudo apache2ctl configtest
+sudo systemctl reload apache2
+Verificar puertos:
+
+Código
+sudo ss -tlnp | grep ':80\|:443'
+Probar en navegador:
+
+https://empresa-tarea-daw02.local
+
+Es normal ver advertencia por certificado no confiable; continúa para ver la página.
+
+Capturas recomendadas:
+
+Contenido del VirtualHost SSL (SSLEngine on y rutas de certificados).
+
+Salida “Syntax OK” y sitios habilitados.
+
+Navegador con https mostrando la página.
+
+Extracto de logs SSL:
+
+Código
+sudo tail -n 50 /var/log/apache2/empresa-tarea-daw02_ssl_access.log
+Opción alternativa: generar certificado autofirmado
+Generar par de claves y certificado:
+
+Código
+sudo openssl req -x509 -nodes -days 365 -newkey rsa:2048 \
+  -keyout /etc/ssl/private/empresa-tarea-daw02.key \
+  -out /etc/ssl/certs/empresa-tarea-daw02.crt \
+  -subj "/C=ES/ST=Santa Cruz/L=La Laguna/O=Empresa Tarea/OU=DAW02/CN=empresa-tarea-daw02.local"
+Cambiar rutas en el VirtualHost SSL:
+
+Código
+SSLCertificateFile /etc/ssl/certs/empresa-tarea-daw02.crt
+SSLCertificateKeyFile /etc/ssl/private/empresa-tarea-daw02.key
+Recargar y verificar como arriba.
+
+Capturas recomendadas: comando openssl y página por HTTPS funcionando.
+
+Comprobaciones finales para justificar la entrega
+Sintaxis de configuración:
+
+Código
+sudo apache2ctl configtest
+Sitios habilitados:
+
+Código
+ls -l /etc/apache2/sites-enabled/
+Puertos escuchando:
+
+Código
+sudo ss -tlnp | grep ':80\|:443'
+Reinicio/recarga (si el docente lo pide explícito):
+
+Código
+sudo systemctl reload apache2
+# o
+sudo systemctl restart apache2
+Capturas recomendadas:
+
+“Syntax OK”.
+
+Symlinks a empresa-tarea-daw02.local y empresa-tarea-daw02-ssl.
+
+Puertos 80 y 443 activos.
+
+Estructura de la documentación en Writer (exportar a PDF)
+Apartado 1: VirtualHost nombre
+
+Archivo: /etc/hosts (bloque de texto).
+
+Archivo: /etc/apache2/sites-available/empresa-tarea-daw02.local.conf (bloque).
+
+Capturas: a2ensite, symlink en sites-enabled, navegador http con “ACCESO NO LIMITADO”.
+
+Apartado 2: Autenticación Basic
+
+Comando: htpasswd creación de admin.
+
+Archivo: /var/www/todo-empresa-tarea-daw02/delimitado/.htaccess (bloque).
+
+Capturas: prompt login, página “ACCESO LIMITADO”, logs de acceso.
+
+Apartado 3: HTTPS
+
+Archivo: /etc/apache2/sites-available/empresa-tarea-daw02-ssl.conf (bloque).
+
+Comandos: a2enmod ssl, a2ensite empresa-tarea-daw02-ssl, openssl si aplicó.
+
+Capturas: navegador https, advertencia de certificado, logs SSL.
+
+Nombre del fichero final:
+
+Apellido1_Apellido2_Nombre_DPL_Tarea02.pdf
