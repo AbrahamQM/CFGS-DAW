@@ -1,0 +1,8 @@
+
+
+# Usuarios
+dn: ou=operador,dc=empresa-tarea-daw05,dc=com
+objectClass: organizationalUnit
+ou: operador
+
+

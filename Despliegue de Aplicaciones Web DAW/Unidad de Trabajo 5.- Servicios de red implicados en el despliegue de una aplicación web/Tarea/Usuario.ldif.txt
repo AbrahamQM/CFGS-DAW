@@ -1,0 +1,14 @@
+# Usuario
+dn: uid=op1,ou=operador,dc=empresa-tarea-daw05,dc=com
+objectClass: inetOrgPerson
+objectClass: posixAccount
+cn: Operador
+sn: uno
+loginShell: /bin/bash
+uidNumber: 10011
+gidNumber: 10011
+homeDirectory: /home/op1
+gecos: Pruebas DAW05
+userPassword: oper
+mail: op1@empresa-tarea-daw05.com
+

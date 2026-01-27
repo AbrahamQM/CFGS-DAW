@@ -1,0 +1,19 @@
+;
+;BIND DATABASE FILE FOR empresa-tarea-daw05.com ZONE
+;
+
+@ IN SOA ns1.empresa-tarea-daw05.com. hostmaster.empresa-tarea-daw05.com.	(
+2011091601 ; serial number
+3600 ; refresh
+600 ; retry
+1209600 ; expire
+3600 ) ; default TTL
+;
+@ IN NS ns1.empresa-tarea-daw05.com.
+@ IN MX 10 mail.empresa-tarea-daw05.com.
+
+
+ns1 IN A 192.168.1.250
+www IN A 192.168.1.250
+mail IN A 192.168.1.249
+aplicacion-web IN CNAME www
