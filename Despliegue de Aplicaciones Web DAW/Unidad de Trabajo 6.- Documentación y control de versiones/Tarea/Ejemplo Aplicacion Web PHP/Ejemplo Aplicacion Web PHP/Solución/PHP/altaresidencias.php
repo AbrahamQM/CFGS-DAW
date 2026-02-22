@@ -17,6 +17,8 @@
  * @author Abraham
  * @version 1.0
  * @since 2026
+ * @copyright © 2026 Abraham. Todos los derechos reservados.
+ * @link https://www.php.net/docs.php PHP Dcoumentation
  */
 
 try
