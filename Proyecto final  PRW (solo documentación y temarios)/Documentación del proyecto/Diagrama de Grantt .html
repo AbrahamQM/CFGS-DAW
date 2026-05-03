@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cronograma - Personal Finance Manager</title>
+    <!-- Tailwind CSS para la interfaz -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- Mermaid.js para el diagrama de Gantt -->
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@10.9.0/dist/mermaid.min.js"></script>
+    <script>
+        // Configuración profesional para el tema de Mermaid
+        mermaid.initialize({
+            startOnLoad: true,
+            theme: 'base',
+            themeVariables: {
+                primaryColor: '#10b981', // Verde Esmeralda para las barras
+                primaryTextColor: '#ffffff',
+                primaryBorderColor: '#047857',
+                lineColor: '#cbd5e1', // Líneas de la cuadrícula
+                fontFamily: 'ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif'
+            },
+            gantt: {
+                useMaxWidth: true,
+                barHeight: 30,
+                barGap: 6,
+                fontSize: 13,
+                gridLineStartPadding: 20
+            }
+        });
+    </script>
+    <style>
+        /* Ajustes SVG de Mermaid para los fondos y los textos */
+        .mermaid svg {
+            height: auto;
+            max-width: 100%;
+            background-color: white;
+            border-radius: 0.5rem;
+        }
+
+        /* 4 tonos de verdes para las 4 fases (Lime, Green, Emerald, Teal) */
+        .mermaid rect.section0 { fill: #f7fee7 !important; } /* Lime 50 */
+        .mermaid rect.section1 { fill: #f0fdf4 !important; } /* Green 50 */
+        .mermaid rect.section2 { fill: #ecfdf5 !important; } /* Emerald 50 */
+        .mermaid rect.section3 { fill: #f0fdfa !important; } /* Teal 50 */
+
+        /* Títulos de las fases en verde muy oscuro para que contrasten */
+        .mermaid .sectionTitle {
+            font-weight: 800 !important;
+            fill: #064e3b !important; /* emerald-900 */
+        }
+
+        /* Títulos de las tareas en Naranja Oscuro */
+        .mermaid .taskText, 
+        .mermaid .taskTextOutsideRight, 
+        .mermaid .taskTextOutsideLeft {
+            fill: #c2410c !important; /* Tailwind orange-700 */
+            font-weight: 700 !important;
+            font-size: 13px !important;
+            text-shadow: 1px 1px 0px rgba(255,255,255,0.8); /* Reborde blanco para máxima legibilidad */
+        }
+
+        /* Eje inferior (Fechas): Más visible y profesional */
+        .mermaid .tick text {
+            font-weight: 600 !important;
+            fill: #475569 !important; /* slate-600 */
+            font-size: 12px !important;
+        }
+    </style>
+</head>
+<body class="bg-slate-100 font-sans text-slate-800 min-h-screen p-4 md:p-8">
+
+    <div class="max-w-7xl mx-auto space-y-6">
+        
+        <!-- Cabecera -->
+        <header class="bg-white rounded-xl shadow-sm border border-slate-200 p-6 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+            <div class="flex items-center gap-4">
+                <div class="p-3 bg-emerald-100 text-emerald-700 rounded-lg shadow-sm border border-emerald-200">
+                    <i data-lucide="bar-chart-2" class="w-8 h-8"></i>
+                </div>
+                <div>
+                    <h1 class="text-2xl font-bold text-slate-900">Cronograma del Proyecto</h1>
+                    <p class="text-slate-600 font-medium">Personal Finance Manager | Analista Desarrollador: <span class="text-emerald-700 font-bold">Abraham Quintana Micó</span></p>
+                </div>
+            </div>
+            <div class="flex gap-3">
+                <span class="px-4 py-2 bg-slate-100 text-slate-700 text-sm font-semibold rounded-lg flex items-center gap-2 border border-slate-200">
+                    <i data-lucide="calendar" class="w-4 h-4 text-slate-500"></i>
+                    Marzo - Mayo 2026
+                </span>
+                <span class="px-4 py-2 bg-emerald-50 text-emerald-800 text-sm font-bold rounded-lg flex items-center gap-2 border border-emerald-200 shadow-sm">
+                    <i data-lucide="flag" class="w-4 h-4 text-emerald-600"></i>
+                    Entrega: 10/05/2026
+                </span>
+            </div>
+        </header>
+
+        <!-- Tarjetas de Resumen -->
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+            <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm flex items-center gap-4 hover:shadow-md transition">
+                <div class="p-3 bg-blue-50 text-blue-600 rounded-full"><i data-lucide="layers"></i></div>
+                <div>
+                    <p class="text-sm text-slate-500 font-medium">Fases Principales</p>
+                    <p class="text-xl font-bold text-slate-800">4 Fases</p>
+                </div>
+            </div>
+            <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm flex items-center gap-4 hover:shadow-md transition">
+                <div class="p-3 bg-indigo-50 text-indigo-600 rounded-full"><i data-lucide="list-todo"></i></div>
+                <div>
+                    <p class="text-sm text-slate-500 font-medium">Total Tareas</p>
+                    <p class="text-xl font-bold text-slate-800">18 Tareas</p>
+                </div>
+            </div>
+            <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm flex items-center gap-4 hover:shadow-md transition">
+                <div class="p-3 bg-amber-50 text-amber-600 rounded-full"><i data-lucide="clock"></i></div>
+                <div>
+                    <p class="text-sm text-slate-500 font-medium">Horas Estimadas</p>
+                    <p class="text-xl font-bold text-slate-800">223h</p>
+                </div>
+            </div>
+            <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm flex items-center gap-4 hover:shadow-md transition">
+                <div class="p-3 bg-emerald-50 text-emerald-600 rounded-full"><i data-lucide="user"></i></div>
+                <div>
+                    <p class="text-sm text-slate-500 font-medium">Recursos</p>
+                    <p class="text-xl font-bold text-slate-800">1 Desarrollador</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contenedor del Diagrama -->
+        <main class="bg-white rounded-xl shadow-sm border border-slate-200 p-6">
+            <h2 class="text-lg font-bold text-slate-800 mb-4 flex items-center gap-2">
+                <i data-lucide="gantt-chart" class="w-5 h-5 text-emerald-600"></i>
+                Diagrama de Ejecución y Tiempos
+            </h2>
+            
+            <div class="w-full overflow-x-auto overflow-y-hidden pb-4">
+                <!-- Código Mermaid Gantt -->
+                <!-- Tick interval configurado en 2day para forzar la visualización de las fechas clave de inicio/fin en el eje inferior -->
+                <div class="mermaid min-w-[900px]">
+                    gantt
+                        dateFormat  YYYY-MM-DD
+                        axisFormat  %d/%m
+                        tickInterval 2day
+                        
+                        section 1. Análisis y Diseño
+                        T1. Análisis de requisitos         :active, 2026-03-19, 2026-03-23
+                        T2. Diseño del modelo ER           :2026-03-22, 2026-03-23
+                        
+                        section 2. Backend (Spring Boot)
+                        T3. Inicialización proyecto        :2026-03-23, 2026-03-24
+                        T4. Modelos, Repos y Seguridad     :2026-03-24, 2026-03-28
+                        T5. Controladores y servicios      :2026-03-28, 2026-04-01
+                        T6. Config. PostgreSQL y Docker    :2026-04-01, 2026-04-02
+                        
+                        section 3. Frontend (React)
+                        T7. Cliente React y comp. base     :2026-04-02, 2026-04-06
+                        T8. Autenticación y utilidades     :2026-04-06, 2026-04-13
+                        T9. Pruebas funcionales auth       :2026-04-13, 2026-04-15
+                        T10. Profile y userService         :2026-04-15, 2026-04-17
+                        T11. Category y categoryService    :2026-04-17, 2026-04-19
+                        T12. Transaction Service           :2026-04-19, 2026-04-22
+                        T13. Statistics y gráficas         :2026-04-22, 2026-04-26
+                        T14. UserNav y estilos finales     :2026-04-26, 2026-04-29
+                        
+                        section 4. Despliegue y Cierre
+                        T15. Dockerización completa        :2026-04-28, 2026-05-02
+                        T16. Documentación final           :2026-05-02, 2026-05-08
+                        T17. Videotutorial del proyecto    :2026-05-08, 2026-05-09
+                        T18. Limpieza y prep. de entrega   :2026-05-09, 2026-05-10
+                </div>
+            </div>
+            
+            <!-- Leyenda explicativa -->
+            <div class="mt-6 p-4 bg-emerald-50 border border-emerald-100 rounded-lg text-sm text-slate-700 flex flex-col md:flex-row gap-4 justify-between items-center">
+                <p><strong>Nota analítica:</strong> El eje temporal inferior está seccionado para reflejar las fechas principales de inicio y fin documentadas, agrupando el ciclo de vida del software en 4 áreas de trabajo críticas.</p>
+            </div>
+        </main>
+        
+        <!-- Pie de página -->
+        <footer class="text-center text-sm text-slate-500 pb-8 mt-4">
+            Documentación generada para la defensa del proyecto final - C.I.F.P. Cesar Manrique
+        </footer>
+    </div>
+
+    <!-- Inicializar iconos -->
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>
