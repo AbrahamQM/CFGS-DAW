@@ -32,3 +32,6 @@ Thumbs.db
 
 # Configuración sensible (si existiera)
 .env
+
+# Ignora vídeos de defensa del proyecto
+*.mp4
